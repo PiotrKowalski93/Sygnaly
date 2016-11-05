@@ -35,3 +35,6 @@ C:\Users\KowalskiP\Downloads\SygnalyBlad\Sygnaly\Sygnaly\obj\Debug\Sygnaly.Prope
 C:\Users\KowalskiP\Downloads\SygnalyBlad\Sygnaly\Sygnaly\obj\Debug\Sygnaly.csproj.GenerateResource.Cache
 C:\Users\KowalskiP\Downloads\SygnalyBlad\Sygnaly\Sygnaly\obj\Debug\Obliczenia.g.cs
 C:\Users\KowalskiP\Downloads\SygnalyBlad\Sygnaly\Sygnaly\obj\Debug\Obliczenia.baml
+C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\bin\Debug\Sygnaly.exe.config
+C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.exe
+C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.pdb
