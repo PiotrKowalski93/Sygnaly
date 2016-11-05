@@ -35,3 +35,23 @@ C:\Users\KowalskiP\Downloads\SygnalyBlad\Sygnaly\Sygnaly\obj\Debug\Sygnaly.Prope
 C:\Users\KowalskiP\Downloads\SygnalyBlad\Sygnaly\Sygnaly\obj\Debug\Sygnaly.csproj.GenerateResource.Cache
 C:\Users\KowalskiP\Downloads\SygnalyBlad\Sygnaly\Sygnaly\obj\Debug\Obliczenia.g.cs
 C:\Users\KowalskiP\Downloads\SygnalyBlad\Sygnaly\Sygnaly\obj\Debug\Obliczenia.baml
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\bin\Debug\Sygnaly.exe.config
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly.exe
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly.pdb
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\bin\Debug\Sygnaly.exe
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\bin\Debug\Sygnaly.pdb
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\bin\Debug\WPFToolkit.dll
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly.csprojResolveAssemblyReference.cache
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\MainWindow.g.cs
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Obliczenia.g.cs
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\App.g.cs
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly_MarkupCompile.cache
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly_MarkupCompile.lref
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\MainWindow.baml
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Obliczenia.baml
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly.g.resources
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly.Properties.Resources.resources
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly.csproj.GenerateResource.Cache
