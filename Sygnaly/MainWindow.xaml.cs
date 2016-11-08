@@ -26,9 +26,12 @@ namespace Sygnaly
     public partial class MainWindow : Window
     {
         public List<KeyValuePair<double, double>> punkty;
+        public List<KeyValuePair<string, double>> punkty2;
         private Sygnal a;
         private Sygnal b;
         private Sygnal c;
+        private Sygnal d;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -59,6 +62,10 @@ namespace Sygnaly
             TypyOperacji.Items.Add("Sygnał 1 * Sygnał 2");
             TypyOperacji.Items.Add("Sygnał 1 / Sygnał 2");
             TypyOperacji.Items.Add("Sygnał 2 / Sygnał 1");
+            IlePrzedzialow.Items.Add("5");
+            IlePrzedzialow.Items.Add("10");
+            IlePrzedzialow.Items.Add("15");
+            IlePrzedzialow.Items.Add("20");
         }
         private void ZaladujSygnal(int nr)
         {
@@ -204,12 +211,66 @@ namespace Sygnaly
                 Chart.Series.Add(mySeries);
             }
         }
+        private void policzHistogram(Sygnal sygnal)
+        {
+            double min = sygnal.y[0];
+            double max = sygnal.y[0];
+            for (int i = 1; i < sygnal.y.Count; i++)
+            {
+                if (sygnal.y[i] > max)
+                    max = sygnal.y[i];
+                if (sygnal.y[i] < min)
+                    min = sygnal.y[i];
+            }
+            double roznica = max - min;
+            int ile;
+            if (IlePrzedzialow.SelectedItem.ToString() == "5")
+                ile = 5;
+            else if (IlePrzedzialow.SelectedItem.ToString() == "10")
+                ile = 10;
+            else if (IlePrzedzialow.SelectedItem.ToString() == "15")
+                ile = 15;
+            else
+                ile = 20;
+            double szerokoscPrzedzialu = roznica / ile;
+            d = new Sygnal();
+            for (int i = 0; i < ile; i++)
+            {
+                d.x[i] = (min + (szerokoscPrzedzialu * i));
+                int iloscWystapien = 0;
+                for (int j = 0; j < sygnal.y.Count; j++)
+                {
+                    if (sygnal.y[j] >= (min + (szerokoscPrzedzialu * i)) && sygnal.y[j] < (min + (szerokoscPrzedzialu * (i + 1))))
+                        iloscWystapien++;
+                    if (i == (ile - 1) && sygnal.y[j] == max)
+                        iloscWystapien++;
+                }
+                d.y.Add(iloscWystapien);
+            }
+            ChartHistogram.Series.Clear();
+            ColumnSeries mySeries = new ColumnSeries();
+            mySeries.Title = "Histogram";
+            mySeries.IndependentValueBinding = new Binding("Key");
+            mySeries.DependentValueBinding = new Binding("Value");
+            punkty2 = new List<KeyValuePair<string, double>>();
+            for (int i = 0; i < ile; i++)
+            {
+                if (i == ile - 1)
+                    punkty2.Add(new KeyValuePair<string, double>("< " + Math.Round(d.x[i], 2).ToString() + " ; " + Math.Round(d.x[i] + szerokoscPrzedzialu, 2).ToString() + " >", d.y[i]));
+                else
+                    punkty2.Add(new KeyValuePair<string, double>("< " + Math.Round(d.x[i], 2).ToString() + " ; " + Math.Round(d.x[i] + szerokoscPrzedzialu, 2).ToString() + " )", d.y[i]));
+            }
+            mySeries.ItemsSource = punkty2;
+            ChartHistogram.Series.Add(mySeries);
 
+
+        }
         private void Sygnal1_Click(object sender, RoutedEventArgs e)
         {
             Chart.Series.Clear();
             int nr = 1;
             ZaladujSygnal(nr);
+            policzHistogram(a);
         }
         private void Sygnal2_Click(object sender, RoutedEventArgs e)
         {
@@ -219,6 +280,7 @@ namespace Sygnaly
             }
             int nr = 2;
             ZaladujSygnal(nr);
+            policzHistogram(b);
         }
         private void TypWybrany(object sender, RoutedEventArgs e)
         {
@@ -289,7 +351,10 @@ namespace Sygnaly
             //Szum Impulsowy
             else
             {
-
+                OkresPodstwawowy.Clear();
+                OkresPodstwawowy.IsEnabled = false;
+                WspolczynnikWpelnienia.Clear();
+                WspolczynnikWpelnienia.IsEnabled = false;
             }
         }
         private void Wczytaj_Click(object sender, RoutedEventArgs e)
@@ -361,9 +426,8 @@ namespace Sygnaly
                 punkty.Add(new KeyValuePair<double, double>(c.x[i], c.y[i]));
             }
             mySeries.ItemsSource = punkty;
-
             ChartWynik.Series.Add(mySeries);
-
+            policzHistogram(c);
         }
 
         private void ZapiszSygnal1_Click(object sender, RoutedEventArgs e)
@@ -399,10 +463,10 @@ namespace Sygnaly
             openFileDialog1.InitialDirectory = Serializacja.Serializacja.sciezka;
             openFileDialog1.Title = "Wczytaj Sygnal 1";
 
-            if(openFileDialog1.ShowDialog() == true)
+            if (openFileDialog1.ShowDialog() == true)
             {
-               a = Serializacja.Serializacja.WczytajWykres(openFileDialog1.FileName);
-               int nr = 1;
+                a = Serializacja.Serializacja.WczytajWykres(openFileDialog1.FileName);
+                int nr = 1;
                 NarysujWczytanyWykres(nr);
             }
         }
@@ -415,8 +479,8 @@ namespace Sygnaly
 
             if (openFileDialog1.ShowDialog() == true)
             {
-               b = Serializacja.Serializacja.WczytajWykres(openFileDialog1.FileName);
-               int nr = 2;
+                b = Serializacja.Serializacja.WczytajWykres(openFileDialog1.FileName);
+                int nr = 2;
                 NarysujWczytanyWykres(nr);
             }
         }
@@ -445,7 +509,6 @@ namespace Sygnaly
             mySeries.ItemsSource = punkty;
             Chart.Series.Add(mySeries);
         }
-
         private void Obliczenia_Click(object sender, RoutedEventArgs e)
         {
 
