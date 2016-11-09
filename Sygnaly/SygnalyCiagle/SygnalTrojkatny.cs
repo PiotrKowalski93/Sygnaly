@@ -19,7 +19,7 @@ namespace Sygnaly.SygnalyCiagle
 
             for (int i = 0; i < x.Count; i++)
             {
-                y.Add(Licz(x[i]));
+                y.Add(Licz(x[i].Real));
             }
         }
 

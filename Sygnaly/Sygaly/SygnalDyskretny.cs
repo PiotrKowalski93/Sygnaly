@@ -12,8 +12,8 @@ namespace Sygnaly.Sygaly
         {
             double sum = 0.0;
             for (int i = 0; i < y.Count; i++)
-                sum = sum + y[i];
-            srednia = (1 / ((y[y.Count - 1]) - y[0] + 1)) * sum;
+                sum = sum + y[i].Real;
+            srednia = (1 / ((y[y.Count - 1].Real) - y[0].Real + 1)) * sum;
 
             return srednia;
         }
@@ -22,8 +22,8 @@ namespace Sygnaly.Sygaly
         {
             double sum = 0.0;
             for (int i = 0; i < y.Count; i++)
-                sum = sum + y[i];
-            sredniaBezwzgledna = (1 / ((y[y.Count - 1]) - y[0] + 1)) * Math.Abs(sum);
+                sum = sum + y[i].Real;
+            sredniaBezwzgledna = (1 / ((y[y.Count - 1].Real) - y[0].Real + 1)) * Math.Abs(sum);
 
             return sredniaBezwzgledna;
         }
@@ -32,8 +32,8 @@ namespace Sygnaly.Sygaly
         {
             double sum = 0.0;
             for (int i = 0; i < y.Count; i++)
-                sum = sum + y[i];
-            sredniaMoc = (1 / ((y[y.Count - 1]) - y[0] + 1)) * Math.Abs(sum);
+                sum = sum + y[i].Real;
+            sredniaMoc = (1 / ((y[y.Count - 1].Real) - y[0].Real + 1)) * Math.Abs(sum);
 
             return sredniaMoc;
         }
@@ -43,7 +43,7 @@ namespace Sygnaly.Sygaly
             double sum = 0;
             for (int i = 0; i < y.Count; i++)
             {
-                sum = y[i] - LiczSrednia();
+                sum = y[i].Real - LiczSrednia();
             }
             wariancja = (1 / y.Count) * sum;
 

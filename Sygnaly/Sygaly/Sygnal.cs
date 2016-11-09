@@ -9,18 +9,16 @@ namespace Sygnaly.Sygaly
 {
     class Sygnal
     {
-        public Complex add;
-
-         // Wartosci Opisujace sygnal
-        public double A = 1;       // <-- Amplituda
-        public double T;       // <-- Okres
-        public double t1;      // <-- Czas Poczatkowy
+        // Wartosci Opisujace sygnal
+        public double A = 1;        // <-- Amplituda
+        public double T;            // <-- Okres
+        public double t1;           // <-- Czas Poczatkowy
         public double d = 100;      // <-- Czas Trwania
-        public double kw;          // <-- Współczynnik wypełnienia (tylko dla prost. i trój.)
-        public int n;              // <-- Ilość próbek sygnału.
+        public double kw;           // <-- Współczynnik wypełnienia (tylko dla prost. i trój.)
+        public int n;               // <-- Ilość próbek sygnału.
 
-        public List<double> y;
-        public List<double> x;
+        public List<Complex> y;
+        public List<Complex> x;
 
         // Wartości obliczeniowe sygnału.
         public double srednia;
@@ -32,8 +30,8 @@ namespace Sygnaly.Sygaly
         public Sygnal()
         {
             n = 1000;
-            x = new List<double>();
-            y = new List<double>();
+            x = new List<Complex>();
+            y = new List<Complex>();
 
             double j = 0;
 
@@ -44,12 +42,12 @@ namespace Sygnaly.Sygaly
             }
         }
 
-        public void UstawX(List<double> x)
+        public void UstawX(List<Complex> x)
         {
             this.x = x;
         }
 
-        public void UstawY(List<double> y)
+        public void UstawY(List<Complex> y)
         {
             this.y = y;
         }

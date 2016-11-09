@@ -18,7 +18,7 @@ namespace Sygnaly.SygnalyDyskretne
 
             for (int i = 0; i < x.Count; i++)
             {
-                y.Add(Calculate(x[i]));
+                y.Add(Calculate(x[i].Real));
             }
         }
 

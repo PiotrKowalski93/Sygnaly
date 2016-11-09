@@ -93,7 +93,7 @@ namespace Sygnaly.Sygaly
                 srednia = (1 / ((t1 + d) - t1) * Integral(1));
                 for (int i = 1; i < nTemp; i++)
                 {
-                    integ += Base(y[i]);
+                    integ += Base(y[i].Real);
                 }
                 integ += (Base(xp) + Base(xk)) / 2;
             }

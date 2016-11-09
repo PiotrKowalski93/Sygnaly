@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sygnaly.Sygaly;
 using System.IO;
+using System.Numerics;
 
 namespace Sygnaly.Serializacja
 {
@@ -41,8 +42,8 @@ namespace Sygnaly.Serializacja
 
         public static Sygnal WczytajWykres(string sciezka)
         {
-            List<double> x = new List<double>();
-            List<double> y = new List<double>();
+            List<Complex> x = new List<Complex>();
+            List<Complex> y = new List<Complex>();
 
             using (StreamReader sr = File.OpenText(sciezka))
             {

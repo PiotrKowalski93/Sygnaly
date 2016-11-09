@@ -171,14 +171,14 @@ namespace Sygnaly
                 {
                     for (int i = 0; i < a.x.Count; i++)
                     {
-                        punkty.Add(new KeyValuePair<double, double>(a.x[i], a.y[i]));
+                        punkty.Add(new KeyValuePair<double, double>(a.x[i].Real, a.y[i].Real));
                     }
                 }
                 else
                 {
                     for (int i = 0; i < b.x.Count; i++)
                     {
-                        punkty.Add(new KeyValuePair<double, double>(b.x[i], b.y[i]));
+                        punkty.Add(new KeyValuePair<double, double>(b.x[i].Real, b.y[i].Real));
                     }
                 }
                 mySeries.ItemsSource = punkty;
@@ -196,14 +196,14 @@ namespace Sygnaly
                 {
                     for (int i = 0; i < a.x.Count; i++)
                     {
-                        punkty.Add(new KeyValuePair<double, double>(a.x[i], a.y[i]));
+                        punkty.Add(new KeyValuePair<double, double>(a.x[i].Real, a.y[i].Real));
                     }
                 }
                 else
                 {
                     for (int i = 0; i < b.x.Count; i++)
                     {
-                        punkty.Add(new KeyValuePair<double, double>(b.x[i], b.y[i]));
+                        punkty.Add(new KeyValuePair<double, double>(b.x[i].Real, b.y[i].Real));
                     }
                 }
                 mySeries.ItemsSource = punkty;
@@ -213,14 +213,14 @@ namespace Sygnaly
         }
         private void policzHistogram(Sygnal sygnal)
         {
-            double min = sygnal.y[0];
-            double max = sygnal.y[0];
+            double min = sygnal.y[0].Real;
+            double max = sygnal.y[0].Real;
             for (int i = 1; i < sygnal.y.Count; i++)
             {
-                if (sygnal.y[i] > max)
-                    max = sygnal.y[i];
-                if (sygnal.y[i] < min)
-                    min = sygnal.y[i];
+                if (sygnal.y[i].Real > max)
+                    max = sygnal.y[i].Real;
+                if (sygnal.y[i].Real < min)
+                    min = sygnal.y[i].Real;
             }
             double roznica = max - min;
             int ile;
@@ -240,7 +240,7 @@ namespace Sygnaly
                 int iloscWystapien = 0;
                 for (int j = 0; j < sygnal.y.Count; j++)
                 {
-                    if (sygnal.y[j] >= (min + (szerokoscPrzedzialu * i)) && sygnal.y[j] < (min + (szerokoscPrzedzialu * (i + 1))))
+                    if (sygnal.y[j].Real >= (min + (szerokoscPrzedzialu * i)) && sygnal.y[j].Real < (min + (szerokoscPrzedzialu * (i + 1))))
                         iloscWystapien++;
                     if (i == (ile - 1) && sygnal.y[j] == max)
                         iloscWystapien++;
@@ -256,9 +256,9 @@ namespace Sygnaly
             for (int i = 0; i < ile; i++)
             {
                 if (i == ile - 1)
-                    punkty2.Add(new KeyValuePair<string, double>("< " + Math.Round(d.x[i], 2).ToString() + " ; " + Math.Round(d.x[i] + szerokoscPrzedzialu, 2).ToString() + " >", d.y[i]));
+                    punkty2.Add(new KeyValuePair<string, double>("< " + Math.Round(d.x[i].Real, 2).ToString() + " ; " + Math.Round(d.x[i].Real + szerokoscPrzedzialu, 2).ToString() + " >", d.y[i].Real));
                 else
-                    punkty2.Add(new KeyValuePair<string, double>("< " + Math.Round(d.x[i], 2).ToString() + " ; " + Math.Round(d.x[i] + szerokoscPrzedzialu, 2).ToString() + " )", d.y[i]));
+                    punkty2.Add(new KeyValuePair<string, double>("< " + Math.Round(d.x[i].Real, 2).ToString() + " ; " + Math.Round(d.x[i].Real + szerokoscPrzedzialu, 2).ToString() + " )", d.y[i].Real));
             }
             mySeries.ItemsSource = punkty2;
             ChartHistogram.Series.Add(mySeries);
@@ -423,7 +423,7 @@ namespace Sygnaly
             punkty = new List<KeyValuePair<double, double>>();
             for (int i = 0; i < c.x.Count; i++)
             {
-                punkty.Add(new KeyValuePair<double, double>(c.x[i], c.y[i]));
+                punkty.Add(new KeyValuePair<double, double>(c.x[i].Real, c.y[i].Real));
             }
             mySeries.ItemsSource = punkty;
             ChartWynik.Series.Add(mySeries);
@@ -496,14 +496,14 @@ namespace Sygnaly
             {
                 for (int i = 0; i < a.x.Count; i++)
                 {
-                    punkty.Add(new KeyValuePair<double, double>(a.x[i], a.y[i]));
+                    punkty.Add(new KeyValuePair<double, double>(a.x[i].Real, a.y[i].Real));
                 }
             }
             else
             {
                 for (int i = 0; i < b.x.Count; i++)
                 {
-                    punkty.Add(new KeyValuePair<double, double>(b.x[i], b.y[i]));
+                    punkty.Add(new KeyValuePair<double, double>(b.x[i].Real, b.y[i].Real));
                 }
             }
             mySeries.ItemsSource = punkty;
