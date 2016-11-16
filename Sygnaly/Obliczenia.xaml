@@ -4,57 +4,79 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sygnaly"
+         xmlns:toolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="Obliczenia" Height="331.443" Width="443.814">
+        Title="Obliczenia" Height="700" Width="1200">
     <Grid Background="#FFB8B6B6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <!--<ColumnDefinition Width="Auto"/>-->
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Label x:Name="Srednia" Grid.Row="0" Content="Srednia" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25"/>
+            <Label x:Name="SredniaBezwzgledna" Grid.Row="1" Content="Srednia Bezwzgledna" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25"/>
+            <Label x:Name="WartoscSkuteczna" Grid.Row="2" Content="Wartosc Skuteczna" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25"/>
+            <Label x:Name="Wariancja" Grid.Row="3" Content="Wariancja" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25"/>
+            <Label x:Name="MocSrdnia" Grid.Row="4" Content="Srednia Moc" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25"/>
+        </Grid>
 
-        <Label x:Name="Sygnal1" Grid.Row="0" Grid.Column="1" Content="Sygnal 1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5"/>
-        <Label x:Name="Sygnal2" Grid.Row="0" Grid.Column="2" Content="Sygnal 2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5"/>
-        <!--<Label x:Name="SygnalWynik" Grid.Row="0" Grid.Column="3" Content="Sygnal Wynikowy" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5"/>-->
-        <Label x:Name="Srednia" Grid.Row="1" Grid.Column="0" Content="Srednia" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5"/>
-        <Label x:Name="SredniaBezwzgledna" Grid.Row="2" Grid.Column="0" Content="Srednia Bezwzgledna" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5"/>
-        <Label x:Name="WartoscSkuteczna" Grid.Row="3" Grid.Column="0" Content="Wartosc Skuteczna" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5"/>
-        <Label x:Name="Wariancja" Grid.Row="4" Grid.Column="0" Content="Wariancja" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5"/>
-        <Label x:Name="MocSrdnia" Grid.Row="5" Grid.Column="0" Content="Srednia Moc" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <!-- Srednie -->
-        <TextBlock x:Name="SredniaSygnal1" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <TextBlock x:Name="SredniaSygnal2" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <!--<TextBlock x:Name="SredniaWynikowy" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />-->
+            <TextBlock x:Name="SredniaSygnal1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25" Width="40" />
+            <TextBlock x:Name="SredniaBezwSygnal1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25" Width="40" />
+            <TextBlock x:Name="SkutecznaSygnal1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25" Width="40" />
+            <TextBlock x:Name="WariancjaSygnal1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25" Width="40" />
+            <TextBlock x:Name="MocSredniaSygnal1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" Height="25" Width="40" />
+        </Grid>
 
-        <!-- Srednie Bezw. -->
-        <TextBlock x:Name="SredniaBezwSygnal1" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <TextBlock x:Name="SredniaBezwSygnal2" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <!--<TextBlock x:Name="SredniBezwaWynikowy" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />-->
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="250"/>
+            </Grid.RowDefinitions>
 
-        <!-- Skuteczna -->
-        <TextBlock x:Name="SkutecznaSygnal1" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <TextBlock x:Name="SkutecznaSygnal2" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <!--<TextBlock x:Name="SkutecznaWynikowy" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />-->
+            <Label Content="Składowa Rzeczywiska " HorizontalAlignment="Center" Grid.Row="0"/>
+            <toolkit:Chart x:Name="AmplitudaRzeczywista" Grid.Row="1" />
 
-        <!-- Wariancja -->
-        <TextBlock x:Name="WariancjaSygnal1" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <TextBlock x:Name="WariancjaSygnal2" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <!--<TextBlock x:Name="WariancjaWynikowy" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />-->
+            <Label Content="Składowa Urojona " HorizontalAlignment="Center" Grid.Row="2"/>
+            <toolkit:Chart x:Name="AmplitudaUrojona" Grid.Row="3" />
+        </Grid>
 
-        <!-- Moc Srednia -->
-        <TextBlock x:Name="MocSredniaSygnal1" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <TextBlock x:Name="MocSredniaSygnal2" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />
-        <!--<TextBlock x:Name="MocSredniaWynikowy" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5" />-->
+        <Grid Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="250"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Moduł" HorizontalAlignment="Center" Grid.Row="0"/>
+            <toolkit:Chart x:Name="Modul" Grid.Row="1" />
+
+            <Label Content="Faza" HorizontalAlignment="Center" Grid.Row="2"/>
+            <toolkit:Chart x:Name="Faza" Grid.Row="3" />
+        </Grid>
 
     </Grid>
 </Window>

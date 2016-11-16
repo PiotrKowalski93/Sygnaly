@@ -509,11 +509,18 @@ namespace Sygnaly
             mySeries.ItemsSource = punkty;
             Chart.Series.Add(mySeries);
         }
-        private void Obliczenia_Click(object sender, RoutedEventArgs e)
-        {
 
-            StatyczneDane.DaneStatyczne.a = a;
-            StatyczneDane.DaneStatyczne.b = b;
+        private void Obliczenia1_Click(object sender, RoutedEventArgs e)
+        {
+            StatyczneDane.DaneStatyczne.dane = a;
+
+            Obliczenia win2 = new Obliczenia();
+            win2.Show();
+        }
+
+        private void Obliczenia2_Click(object sender, RoutedEventArgs e)
+        {
+            StatyczneDane.DaneStatyczne.dane = b;
 
             Obliczenia win2 = new Obliczenia();
             win2.Show();

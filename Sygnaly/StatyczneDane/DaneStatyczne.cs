@@ -8,7 +8,6 @@ namespace Sygnaly.StatyczneDane
 {
     class DaneStatyczne
     {
-        public static object a;
-        public static object b;
+        public static object dane;
     }
 }

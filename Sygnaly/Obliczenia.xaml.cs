@@ -25,9 +25,9 @@ namespace Sygnaly
         {
             InitializeComponent();
 
-            if(DaneStatyczne.a is SygnalCiagly)
+            if(DaneStatyczne.dane is SygnalCiagly)
             {
-                SygnalCiagly A = (SygnalCiagly)DaneStatyczne.a;
+                SygnalCiagly A = (SygnalCiagly)DaneStatyczne.dane;
 
                 SredniaSygnal1.Text = A.PoliczSrednia().ToString();
                 SredniaBezwSygnal1.Text = A.PoliczSredniaBezwzgledna().ToString();
@@ -35,9 +35,9 @@ namespace Sygnaly
                 WariancjaSygnal1.Text = A.PoliczWariancje().ToString();
                 MocSredniaSygnal1.Text = A.PoliczSredniaMoc().ToString();
             }
-            else if (DaneStatyczne.a is SygnalDyskretny)
+            else if (DaneStatyczne.dane is SygnalDyskretny)
             {
-                SygnalDyskretny A = (SygnalDyskretny)DaneStatyczne.a;
+                SygnalDyskretny A = (SygnalDyskretny)DaneStatyczne.dane;
 
                 SredniaSygnal1.Text = A.LiczSrednia().ToString();
                 SredniaBezwSygnal1.Text = A.LiczSredniaBezwzgledna().ToString();
@@ -46,26 +46,26 @@ namespace Sygnaly
                 MocSredniaSygnal1.Text = A.LiczSredniaMoc().ToString();
             } 
 
-            if (DaneStatyczne.b is SygnalCiagly)
-            {
-                SygnalCiagly B = (SygnalCiagly)DaneStatyczne.b;
+            //if (DaneStatyczne.b is SygnalCiagly)
+            //{
+            //    SygnalCiagly B = (SygnalCiagly)DaneStatyczne.b;
 
-                SredniaSygnal2.Text = B.PoliczSrednia().ToString();
-                SredniaBezwSygnal2.Text = B.PoliczSredniaBezwzgledna().ToString();
-                SkutecznaSygnal2.Text = B.PoliczWartoscSkuteczna().ToString();
-                WariancjaSygnal2.Text = B.PoliczWariancje().ToString();
-                MocSredniaSygnal2.Text = B.PoliczSredniaMoc().ToString();
-            }
-            else if (DaneStatyczne.b is SygnalDyskretny)
-            {
-                SygnalDyskretny B = (SygnalDyskretny)DaneStatyczne.b;
+            //    SredniaSygnal2.Text = B.PoliczSrednia().ToString();
+            //    SredniaBezwSygnal2.Text = B.PoliczSredniaBezwzgledna().ToString();
+            //    SkutecznaSygnal2.Text = B.PoliczWartoscSkuteczna().ToString();
+            //    WariancjaSygnal2.Text = B.PoliczWariancje().ToString();
+            //    MocSredniaSygnal2.Text = B.PoliczSredniaMoc().ToString();
+            //}
+            //else if (DaneStatyczne.b is SygnalDyskretny)
+            //{
+            //    SygnalDyskretny B = (SygnalDyskretny)DaneStatyczne.b;
 
-                SredniaSygnal2.Text = B.LiczSrednia().ToString();
-                SredniaBezwSygnal2.Text = B.LiczSredniaBezwzgledna().ToString();
-                SkutecznaSygnal2.Text = B.LiczWartoscSkuteczna().ToString();
-                WariancjaSygnal2.Text = B.LiczWariancje().ToString();
-                MocSredniaSygnal2.Text = B.LiczSredniaMoc().ToString();
-            }
+            //    SredniaSygnal2.Text = B.LiczSrednia().ToString();
+            //    SredniaBezwSygnal2.Text = B.LiczSredniaBezwzgledna().ToString();
+            //    SkutecznaSygnal2.Text = B.LiczWartoscSkuteczna().ToString();
+            //    WariancjaSygnal2.Text = B.LiczWariancje().ToString();
+            //    MocSredniaSygnal2.Text = B.LiczSredniaMoc().ToString();
+            //}
         }
     }
 }
