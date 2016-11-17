@@ -33,7 +33,7 @@ namespace Sygnaly.Sygaly
             x = new List<Complex>();
             y = new List<Complex>();
 
-            double j = 0;
+            double j = -50;
 
             for (int i = 0; i < n; i++)
             {

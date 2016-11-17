@@ -25,12 +25,12 @@ namespace Sygnaly
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public List<KeyValuePair<double, double>> punkty;
-        public List<KeyValuePair<string, double>> punkty2;
         private Sygnal a;
         private Sygnal b;
         private Sygnal c;
-        private Sygnal d;
+        private int ile;
 
         public MainWindow()
         {
@@ -210,20 +210,6 @@ namespace Sygnaly
 
                 Chart.Series.Add(mySeries);
             }
-        }
-        private void policzHistogram(Sygnal sygnal)
-        {
-            double min = sygnal.y[0].Real;
-            double max = sygnal.y[0].Real;
-            for (int i = 1; i < sygnal.y.Count; i++)
-            {
-                if (sygnal.y[i].Real > max)
-                    max = sygnal.y[i].Real;
-                if (sygnal.y[i].Real < min)
-                    min = sygnal.y[i].Real;
-            }
-            double roznica = max - min;
-            int ile;
             if (IlePrzedzialow.SelectedItem.ToString() == "5")
                 ile = 5;
             else if (IlePrzedzialow.SelectedItem.ToString() == "10")
@@ -232,45 +218,13 @@ namespace Sygnaly
                 ile = 15;
             else
                 ile = 20;
-            double szerokoscPrzedzialu = roznica / ile;
-            d = new Sygnal();
-            for (int i = 0; i < ile; i++)
-            {
-                d.x[i] = (min + (szerokoscPrzedzialu * i));
-                int iloscWystapien = 0;
-                for (int j = 0; j < sygnal.y.Count; j++)
-                {
-                    if (sygnal.y[j].Real >= (min + (szerokoscPrzedzialu * i)) && sygnal.y[j].Real < (min + (szerokoscPrzedzialu * (i + 1))))
-                        iloscWystapien++;
-                    if (i == (ile - 1) && sygnal.y[j] == max)
-                        iloscWystapien++;
-                }
-                d.y.Add(iloscWystapien);
-            }
-            ChartHistogram.Series.Clear();
-            ColumnSeries mySeries = new ColumnSeries();
-            mySeries.Title = "Histogram";
-            mySeries.IndependentValueBinding = new Binding("Key");
-            mySeries.DependentValueBinding = new Binding("Value");
-            punkty2 = new List<KeyValuePair<string, double>>();
-            for (int i = 0; i < ile; i++)
-            {
-                if (i == ile - 1)
-                    punkty2.Add(new KeyValuePair<string, double>("< " + Math.Round(d.x[i].Real, 2).ToString() + " ; " + Math.Round(d.x[i].Real + szerokoscPrzedzialu, 2).ToString() + " >", d.y[i].Real));
-                else
-                    punkty2.Add(new KeyValuePair<string, double>("< " + Math.Round(d.x[i].Real, 2).ToString() + " ; " + Math.Round(d.x[i].Real + szerokoscPrzedzialu, 2).ToString() + " )", d.y[i].Real));
-            }
-            mySeries.ItemsSource = punkty2;
-            ChartHistogram.Series.Add(mySeries);
-
-
         }
+        
         private void Sygnal1_Click(object sender, RoutedEventArgs e)
         {
             Chart.Series.Clear();
             int nr = 1;
             ZaladujSygnal(nr);
-            policzHistogram(a);
         }
         private void Sygnal2_Click(object sender, RoutedEventArgs e)
         {
@@ -280,7 +234,6 @@ namespace Sygnaly
             }
             int nr = 2;
             ZaladujSygnal(nr);
-            policzHistogram(b);
         }
         private void TypWybrany(object sender, RoutedEventArgs e)
         {
@@ -427,7 +380,6 @@ namespace Sygnaly
             }
             mySeries.ItemsSource = punkty;
             ChartWynik.Series.Add(mySeries);
-            policzHistogram(c);
         }
 
         private void ZapiszSygnal1_Click(object sender, RoutedEventArgs e)
@@ -513,16 +465,14 @@ namespace Sygnaly
         private void Obliczenia1_Click(object sender, RoutedEventArgs e)
         {
             StatyczneDane.DaneStatyczne.dane = a;
-
-            Obliczenia win2 = new Obliczenia();
+            Obliczenia win2 = new Obliczenia(ile);
             win2.Show();
         }
 
         private void Obliczenia2_Click(object sender, RoutedEventArgs e)
         {
             StatyczneDane.DaneStatyczne.dane = b;
-
-            Obliczenia win2 = new Obliczenia();
+            Obliczenia win2 = new Obliczenia(ile);
             win2.Show();
         }
     }
