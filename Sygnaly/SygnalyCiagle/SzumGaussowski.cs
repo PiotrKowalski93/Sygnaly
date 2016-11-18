@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,8 +18,15 @@ namespace Sygnaly.SygnalyCiagle
             this.t1 = t1;
             this.d = d;
 
-            for (int i = 0; i <= x.Count; i++)
+            x = new List<Complex>();
+            y = new List<Complex>();
+
+            double j = 0;
+
+            for (int i = 0; i < n; i++)
             {
+                x.Add(j);
+                j = j + (d / (n - 1));
                 y.Add(random.NextDouble() * A);
             }
         }

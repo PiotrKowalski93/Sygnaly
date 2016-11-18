@@ -13,7 +13,7 @@ namespace Sygnaly.Sygaly
         public double A = 1;        // <-- Amplituda
         public double T;            // <-- Okres
         public double t1;           // <-- Czas Poczatkowy
-        public double d = 100;      // <-- Czas Trwania
+        public double d;     // <-- Czas Trwania
         public double kw;           // <-- Współczynnik wypełnienia (tylko dla prost. i trój.)
         public int n;               // <-- Ilość próbek sygnału.
 
@@ -30,16 +30,16 @@ namespace Sygnaly.Sygaly
         public Sygnal()
         {
             n = 1000;
-            x = new List<Complex>();
-            y = new List<Complex>();
+            //x = new List<Complex>();
+            //y = new List<Complex>();
 
-            double j = -50;
+            //double j = 0;
 
-            for (int i = 0; i < n; i++)
-            {
-                x.Add(j);
-                j = j + (d / (n-1));
-            }
+            //for (int i = 0; i < n; i++)
+            //{
+            //    x.Add(j);
+            //    j = j + (d / (n - 1));
+            //}
         }
 
         public void UstawX(List<Complex> x)
