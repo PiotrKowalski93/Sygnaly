@@ -22,7 +22,7 @@ namespace Sygnaly.SygnalyCiagle
             x = new List<Complex>();
             y = new List<Complex>();
 
-            double j = 0;
+            double j = t1;
 
             for (int i = 0; i < n; i++)
             {
