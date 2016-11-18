@@ -26,7 +26,7 @@ namespace Sygnaly.SygnalyCiagle
             for (int i = 0; i < n; i++)
             {
                 x.Add(j);
-                j = j + (d / (n - 1));
+                j = j + ((d - t1) / (n - 1));
                 y.Add(random.NextDouble() * A);
             }
         }
