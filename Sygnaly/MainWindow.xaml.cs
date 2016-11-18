@@ -475,5 +475,17 @@ namespace Sygnaly
             Obliczenia win2 = new Obliczenia(ile);
             win2.Show();
         }
+        private void Faza1_Click(object sender, RoutedEventArgs e)
+        {
+            StatyczneDane.DaneStatyczne.dane = a;
+            Faza win2 = new Faza(ile);
+            win2.Show();
+        }
+        private void Faza2_Click(object sender, RoutedEventArgs e)
+        {
+            StatyczneDane.DaneStatyczne.dane = b;
+            Faza win2 = new Faza(ile);
+            win2.Show();
+        }
     }
 }

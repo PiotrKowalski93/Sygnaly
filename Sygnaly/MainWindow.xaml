@@ -153,6 +153,7 @@
                 <Label Content="Sygnal 1:" Grid.Column="0" Margin="5,5"/>
                 <Button x:Name="WczytajSygnal1" Content="Wczytaj" Grid.Column="1" Margin="5,5" Click="WczytajSygnal1_Click"/>
                 <Button x:Name="ZapiszSygnal1" Content="Zapisz" Grid.Column="2" Margin="5,5" Click="ZapiszSygnal1_Click"/>
+                <Label Content="Sygnal 1:" Grid.Column="0" Margin="5,117,4.8,-107"/>
             </Grid>
 
             <Grid Grid.Row="13">
@@ -164,6 +165,7 @@
                 <Label Content="Sygnal 2:" Grid.Column="0" Margin="5,5"/>
                 <Button x:Name="WczytajSygnal2" Content="Wczytaj" Grid.Column="1" Margin="5,5" Click="WczytajSygnal2_Click"/>
                 <Button x:Name="ZapiszSygnal2" Content="Zapisz" Grid.Column="2" Margin="5,5" Click="ZapiszSygnal2_Click"/>
+                <Label Content="Sygnal 2:" Grid.Column="0" Margin="5,114,4.8,-104"/>
             </Grid>
 
             <Grid Grid.Row="14">
@@ -182,11 +184,13 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="Obliczenia1" Grid.Row="0" Content="Sygnał 1: Szczegóły" Height="25" Width="150" Margin="5,5" HorizontalAlignment="Center" Click="Obliczenia1_Click"/>
-                <Button x:Name="Obliczenia2" Grid.Row="1" Content="Sygnał 2: Szczegóły" Height="25" Width="150" Margin="5,5" HorizontalAlignment="Center" Click="Obliczenia2_Click"/>
-            
+                <Button x:Name="Obliczenia1" Grid.Row="0" Content="Szczegóły" Height="25" Width="89" Margin="112,5,113.4,6" HorizontalAlignment="Center" Click="Obliczenia1_Click"/>
+                <Button x:Name="Obliczenia2" Grid.Row="1" Content="Szczegóły" Height="25" Width="89" Margin="112,6.2,113.4,4.8" HorizontalAlignment="Center" Click="Obliczenia2_Click"/>
+                <Button x:Name="Faza1" Grid.Row="0" Content="moduł i faza" Height="25" Width="89" Margin="215,5,10.4,6.8" HorizontalAlignment="Center" Click="Faza1_Click"/>
+                <Button x:Name="Faza2" Grid.Row="1" Content="moduł i faza" Height="25" Width="89" Margin="215,6.2,10.4,4.8" HorizontalAlignment="Center" Click="Faza2_Click"/>
+
             </Grid>
-            
+
             <Label x:Name="LiczbaPrzedzialow"  FontSize="12" Height="25" Margin="0,4.6,0,20.8" HorizontalAlignment="Left" Content="Liczba przedziałów histogramu:" Width="175" Grid.Row="11"/>
 
         </Grid>
@@ -199,7 +203,7 @@
             </Grid.RowDefinitions>
 
             <toolkit:Chart x:Name="Chart" Grid.Row="0" Margin="0,0,-0.4,127" Grid.RowSpan="2" />
-            <toolkit:Chart x:Name="ChartWynik" Grid.Row="1" Margin="0,118,-0.4,-0.2" Grid.RowSpan="2" />
+            <toolkit:Chart x:Name="ChartWynik" Grid.Row="1" Margin="0,113,-0.4,-0.2" Grid.RowSpan="2" />
 
         </Grid>
 

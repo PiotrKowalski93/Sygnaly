@@ -28,8 +28,6 @@ namespace Sygnaly
     {
         private Sygnal d;
         private Sygnal e;
-        private SygnalCiagly A;
-        private SygnalDyskretny B;
         public List<KeyValuePair<double, double>> punkty;
         public List<KeyValuePair<double, double>> punktyU;
         public List<KeyValuePair<string, double>> punkty2;
