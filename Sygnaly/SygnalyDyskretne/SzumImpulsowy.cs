@@ -25,8 +25,13 @@ namespace Sygnaly.SygnalyDyskretne
             for (int i = 0; i <= n; i++)
             {
                 x.Add(j);
-                j = j + ((d - t1) / (n - 1));
+                j = j + (d / (n - 1));
+            }
 
+            x.Add(new System.Numerics.Complex(0, 0));
+
+            for (int i = 0; i <= n; i++)
+            {
                 y.Add(Calculate());
             }
 

@@ -16,6 +16,18 @@ namespace Sygnaly.SygnalyDyskretne
             this.t1 = t1;
             this.d = d;
 
+            //x = new List<System.Numerics.Complex>();
+            //y = new List<System.Numerics.Complex>();
+            //double j = t1;
+
+            //for (int i = 0; i <= n; i++)
+            //{
+            //    x.Add(j);
+            //    j = j + (d / (n - 1));
+
+            //    y.Add(Calculate(x[i].Real));
+            //}
+
             x = new List<System.Numerics.Complex>();
             y = new List<System.Numerics.Complex>();
             double j = t1;
@@ -23,8 +35,13 @@ namespace Sygnaly.SygnalyDyskretne
             for (int i = 0; i <= n; i++)
             {
                 x.Add(j);
-                j = j + ((d - t1) / (n - 1));
+                j = j + (d / (n - 1));
+            }
 
+            x.Add(new System.Numerics.Complex(0, 0));
+
+            for (int i = 0; i <= n; i++)
+            {
                 y.Add(Calculate(x[i].Real));
             }
 
