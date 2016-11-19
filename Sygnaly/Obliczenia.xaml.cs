@@ -33,6 +33,7 @@ namespace Sygnaly
         public List<KeyValuePair<string, double>> punkty2;
         public List<KeyValuePair<string, double>> punkty2U;
         int ile;
+
         public Obliczenia(int a)
         {
             InitializeComponent();
@@ -172,6 +173,7 @@ namespace Sygnaly
             mySeries.ItemsSource = punkty;
             AmplitudaRzeczywista.Series.Add(mySeries);
         }
+
         private void policzHistogramA(SygnalCiagly A)
         {
             policzHistogram(A);
@@ -181,6 +183,7 @@ namespace Sygnaly
             WariancjaSygnal1.Text = A.PoliczWariancje().ToString();
             MocSredniaSygnal1.Text = A.PoliczSredniaMoc().ToString();
         }
+
         private void policzHistogramB(SygnalDyskretny B)
         {
             policzHistogram(B);
@@ -190,10 +193,12 @@ namespace Sygnaly
             WariancjaSygnal1.Text = B.LiczWariancje().ToString();
             MocSredniaSygnal1.Text = B.LiczSredniaMoc().ToString();
         }
+
         private void policzHistogram(Sygnal sygnal)
         {
             double minReal = sygnal.y[0].Real;
             double maxReal = sygnal.y[0].Real;
+
             for (int i = 1; i < sygnal.y.Count; i++)
             {
                 if (sygnal.y[i].Real > maxReal)
@@ -201,9 +206,19 @@ namespace Sygnaly
                 if (sygnal.y[i].Real < minReal)
                     minReal = sygnal.y[i].Real;
             }
+
             double roznicaReal = maxReal - minReal;
             double szerokoscPrzedzialuReal = roznicaReal / ile;
+
             d = new Sygnal();
+            d.x = new List<System.Numerics.Complex>();
+            d.y = new List<System.Numerics.Complex>();
+
+            for (int i = 0; i < d.n; i++)
+            {
+                d.x.Add(new System.Numerics.Complex());
+            }
+
             for (int i = 0; i < ile; i++)
             {
                 d.x[i] = (minReal + (szerokoscPrzedzialuReal * i));
@@ -223,6 +238,7 @@ namespace Sygnaly
             mySeries.IndependentValueBinding = new Binding("Key");
             mySeries.DependentValueBinding = new Binding("Value");
             punkty2 = new List<KeyValuePair<string, double>>();
+
             for (int i = 0; i < ile; i++)
             {
                 if (i == ile - 1)
@@ -230,10 +246,12 @@ namespace Sygnaly
                 else
                     punkty2.Add(new KeyValuePair<string, double>("< " + Math.Round(d.x[i].Real, 2).ToString() + " ; " + Math.Round(d.x[i].Real + szerokoscPrzedzialuReal, 2).ToString() + " )", d.y[i].Real));
             }
+
             mySeries.ItemsSource = punkty2;
             HistogramRzeczywista.Series.Add(mySeries);
             double minU = sygnal.y[0].Imaginary;
             double maxU = sygnal.y[0].Imaginary;
+
             for (int i = 1; i < sygnal.y.Count; i++)
             {
                 if (sygnal.y[i].Imaginary > maxU)
@@ -241,6 +259,7 @@ namespace Sygnaly
                 if (sygnal.y[i].Imaginary < minU)
                     minU = sygnal.y[i].Imaginary;
             }
+
             double roznicaU = maxU - minU;
             double szerokoscPrzedzialuU = roznicaU / ile;
             bool czy0=false;
@@ -250,7 +269,16 @@ namespace Sygnaly
                 czy0 = true;
                 minU = (ile*0.1)/(-2);
             }
+
             e = new Sygnal();
+            e.x = new List<System.Numerics.Complex>();
+            e.y = new List<System.Numerics.Complex>();
+
+            for (int i = 0; i < d.n; i++)
+            {
+                e.x.Add(new System.Numerics.Complex());
+            }
+
             for (int i = 0; i < ile; i++)
             {
                 e.x[i] = (minU + (szerokoscPrzedzialuU * i));

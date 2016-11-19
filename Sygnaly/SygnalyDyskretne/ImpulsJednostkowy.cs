@@ -40,7 +40,7 @@ namespace Sygnaly.SygnalyDyskretne
 
             x.Add(new System.Numerics.Complex(0, 0));
 
-            for (int i = 0; i <= n; i++)
+            for (int i = 0; i < x.Count; i++)
             {
                 y.Add(Calculate(x[i].Real));
             }

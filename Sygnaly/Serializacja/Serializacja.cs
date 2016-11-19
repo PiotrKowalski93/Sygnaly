@@ -35,7 +35,7 @@ namespace Sygnaly.Serializacja
             {
                 for(int i = 0; i<sygnal.x.Count;  i++)
                 {
-                    file.WriteLine(sygnal.x[i] + ";" + sygnal.y[i]);
+                    file.WriteLine(sygnal.x[i].Real + ";" + sygnal.x[i].Imaginary + ";" + sygnal.y[i].Real + ";" + sygnal.y[i].Imaginary + ";");
                 }
             }
         }
@@ -52,8 +52,11 @@ namespace Sygnaly.Serializacja
                 {
                     var values = s.Split(';');
 
-                    x.Add(double.Parse(values[0]));
-                    y.Add(double.Parse(values[1]));
+                    x.Add(new Complex(double.Parse(values[0]), double.Parse(values[1])));
+                    y.Add(new Complex(double.Parse(values[2]), double.Parse(values[3])));
+
+                    //x.Add(double.Parse(values[0]));
+                    //y.Add(double.Parse(values[1]));
                 }
             }
 
