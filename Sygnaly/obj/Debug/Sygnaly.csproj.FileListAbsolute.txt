@@ -79,3 +79,5 @@ D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Faza.g.
 D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Faza.baml
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Faza.g.cs
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Faza.baml
+C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\bin\Debug\Newtonsoft.Json.dll
+C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\bin\Debug\Newtonsoft.Json.xml

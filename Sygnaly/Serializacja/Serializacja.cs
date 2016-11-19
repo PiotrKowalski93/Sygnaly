@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Sygnaly.Sygaly;
 using System.IO;
 using System.Numerics;
+using Sygnaly.SygnalyCiagle;
+using Sygnaly.SygnalyDyskretne;
+using Newtonsoft.Json;
 
 namespace Sygnaly.Serializacja
 {
@@ -18,25 +18,64 @@ namespace Sygnaly.Serializacja
             string zmiennaCzasu = DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + "-" + DateTime.Now.Hour + "-"
                 + DateTime.Now.Minute + "-" + DateTime.Now.Second;
 
-            string nazwa = nazwaWykresu;
+            string nazwa = nazwaWykresu;            
 
             if(s is SygnalCiagly)
             {
-                nazwa += "Ciagly";
+                if (s is SkokJednostkowy)
+                {
+                    nazwa += "SkokJednostkowy";
+                }
+                if (s is SygnalProstokatny)
+                {
+                    nazwa += "SygnalProstokatny";
+                }
+                if (s is SygnalProstokatnySymetryczny)
+                {
+                    nazwa += "SygnalProstokatnySymetryczny";
+                }
+                if (s is SygnalSinusoidalny)
+                {
+                    nazwa += "SygnalSinusoidalny";
+                }
+                if (s is SygnalSinusoidalnyDwupolowkowo)
+                {
+                    nazwa += "SygnalSinusoidalnyDwupolowkowo";
+                }
+                if (s is SygnalSinusoidalnyJednopolowkowo)
+                {
+                    nazwa += "SygnalSinusoidalnyJednopolowkowo";
+                }
+                if (s is SygnalTrojkatny)
+                {
+                    nazwa += "SygnalTrojkatny";
+                }
+                if (s is SzumGaussowski)
+                {
+                    nazwa += "SzumGaussowski";
+                }
+                if (s is SzumRozkladJednostajny)
+                {
+                    nazwa += "SzumRozkladJednostajny";
+                }
 
             }else
             {
-                nazwa += "Dyskretny";
+                if (s is ImpulsJednostkowy)
+                {
+                    nazwa += "ImpulsJednostkowy";
+                }
+                if (s is SzumImpulsowy)
+                {
+                    nazwa += "SzumImpulsowy";
+                }
             }
-
-            Sygnal sygnal = (Sygnal)s;
+            
+            string output = JsonConvert.SerializeObject(s);
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(sciezka + "\\" + nazwa + "-" + zmiennaCzasu + ".txt"))
             {
-                for(int i = 0; i<sygnal.x.Count;  i++)
-                {
-                    file.WriteLine(sygnal.x[i].Real + ";" + sygnal.x[i].Imaginary + ";" + sygnal.y[i].Real + ";" + sygnal.y[i].Imaginary + ";");
-                }
+               file.WriteLine(output);
             }
         }
 
@@ -45,36 +84,92 @@ namespace Sygnaly.Serializacja
             List<Complex> x = new List<Complex>();
             List<Complex> y = new List<Complex>();
 
+            string sygnal = String.Empty;
+
             using (StreamReader sr = File.OpenText(sciezka))
             {
-                string s = String.Empty;
-                while ((s = sr.ReadLine()) != null)
-                {
-                    var values = s.Split(';');
-
-                    x.Add(new Complex(double.Parse(values[0]), double.Parse(values[1])));
-                    y.Add(new Complex(double.Parse(values[2]), double.Parse(values[3])));
-
-                    //x.Add(double.Parse(values[0]));
-                    //y.Add(double.Parse(values[1]));
-                }
+                sygnal = sr.ReadToEnd().Trim().TrimEnd();
             }
 
-            if(sciezka.Contains("Ciagly"))
+            if (sciezka.Contains("SkokJednostkowy"))
             {
-                SygnalCiagly ciagly = new SygnalCiagly();
+                SkokJednostkowy ciagly = JsonConvert.DeserializeObject<SkokJednostkowy>(sygnal);
                 ciagly.UstawX(x);
                 ciagly.UstawY(y);
                 return ciagly;
             }
-            else
+            if (sciezka.Contains("SygnalProstokatny"))
             {
-                SygnalDyskretny dyskretny = new SygnalDyskretny();
-                dyskretny.UstawX(x);
-                dyskretny.UstawY(y);
-                return dyskretny;
+                SygnalProstokatny ciagly = JsonConvert.DeserializeObject<SygnalProstokatny>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
+            }
+            if (sciezka.Contains("SygnalProstokatnySymetryczny"))
+            {
+                SygnalProstokatnySymetryczny ciagly = JsonConvert.DeserializeObject<SygnalProstokatnySymetryczny>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
+            }
+            if (sciezka.Contains("SygnalSinusoidalny"))
+            {
+                SygnalSinusoidalny ciagly = JsonConvert.DeserializeObject<SygnalSinusoidalny>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
+            }
+            if (sciezka.Contains("SygnalSinusoidalnyDwupolowkowo"))
+            {
+                SygnalSinusoidalnyDwupolowkowo ciagly = JsonConvert.DeserializeObject<SygnalSinusoidalnyDwupolowkowo>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
+            }
+            if (sciezka.Contains("SygnalSinusoidalnyJednopolowkowo"))
+            {
+                SygnalSinusoidalnyJednopolowkowo ciagly = JsonConvert.DeserializeObject<SygnalSinusoidalnyJednopolowkowo>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
+            }
+            if (sciezka.Contains("SygnalTrojkatny"))
+            {
+                SygnalTrojkatny ciagly = JsonConvert.DeserializeObject<SygnalTrojkatny>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
+            }
+            if (sciezka.Contains("SzumGaussowski"))
+            {
+                SzumGaussowski ciagly = JsonConvert.DeserializeObject<SzumGaussowski>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
+            }
+            if (sciezka.Contains("SzumRozkladJednostajny"))
+            {
+                SzumRozkladJednostajny ciagly = JsonConvert.DeserializeObject<SzumRozkladJednostajny>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
+            }      
+            if (sciezka.Contains("ImpulsJednostkowy"))
+            {
+                ImpulsJednostkowy ciagly = JsonConvert.DeserializeObject<ImpulsJednostkowy>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
+            }
+            if (sciezka.Contains("SzumImpulsowy"))
+            {
+                ImpulsJednostkowy ciagly = JsonConvert.DeserializeObject<ImpulsJednostkowy>(sygnal);
+                ciagly.UstawX(x);
+                ciagly.UstawY(y);
+                return ciagly;
             }
 
+            return null;
         }
     }
 }

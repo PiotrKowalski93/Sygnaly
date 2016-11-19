@@ -150,6 +150,7 @@ namespace Sygnaly
         {
             double minReal = sygnal.y[0].Real;
             double maxReal = sygnal.y[0].Real;
+
             for (int i = 1; i < sygnal.y.Count; i++)
             {
                 if (sygnal.y[i].Real > maxReal)
@@ -157,12 +158,17 @@ namespace Sygnaly
                 if (sygnal.y[i].Real < minReal)
                     minReal = sygnal.y[i].Real;
             }
+
             double roznicaReal = maxReal - minReal;
             double szerokoscPrzedzialuReal = roznicaReal / ile;
+
             d = new Sygnal();
+            d.x = new List<System.Numerics.Complex>();
+            d.y = new List<System.Numerics.Complex>();
+
             for (int i = 0; i < ile; i++)
             {
-                d.x[i] = (minReal + (szerokoscPrzedzialuReal * i));
+                d.x.Add(minReal + (szerokoscPrzedzialuReal * i));
                 int iloscWystapienR = 0;
                 for (int j = 0; j < sygnal.y.Count; j++)
                 {

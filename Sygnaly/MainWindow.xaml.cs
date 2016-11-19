@@ -314,11 +314,14 @@ namespace Sygnaly
         {
             ChartWynik.Series.Clear();
             c = new Sygnal();
+            c.x = new List<System.Numerics.Complex>();
+            c.y = new List<System.Numerics.Complex>();
+
             if (TypyOperacji.SelectedItem.ToString() == "Sygnał 1 + Sygnał 2")
             {
                 for (int i = 0; i < a.x.Count; i++)
                 {
-                    c.x[i] = a.x[i];
+                    c.x.Add(a.x[i]);
                     c.y.Add(a.y[i] + b.y[i]);
                 }
             }
@@ -327,7 +330,7 @@ namespace Sygnaly
             {
                 for (int i = 0; i < a.x.Count; i++)
                 {
-                    c.x[i] = a.x[i];
+                    c.x.Add(a.x[i]);
                     c.y.Add(a.y[i] - b.y[i]);
                 }
             }
@@ -335,7 +338,7 @@ namespace Sygnaly
             {
                 for (int i = 0; i < a.x.Count; i++)
                 {
-                    c.x[i] = a.x[i];
+                    c.x.Add(a.x[i]);
                     c.y.Add(b.y[i] - a.y[i]);
                 }
             }
@@ -343,7 +346,7 @@ namespace Sygnaly
             {
                 for (int i = 0; i < a.x.Count; i++)
                 {
-                    c.x[i] = a.x[i];
+                    c.x.Add(a.x[i]);
                     c.y.Add(a.y[i] * b.y[i]);
                 }
             }
@@ -351,7 +354,7 @@ namespace Sygnaly
             {
                 for (int i = 0; i < a.x.Count; i++)
                 {
-                    c.x[i] = a.x[i];
+                    c.x.Add(a.x[i]);
                     if (b.y[i] != 0)
                         c.y.Add(a.y[i] / b.y[i]);
                     else
@@ -362,7 +365,7 @@ namespace Sygnaly
             {
                 for (int i = 0; i < a.x.Count; i++)
                 {
-                    c.x[i] = a.x[i];
+                    c.x.Add(a.x[i]);
                     if (a.y[i] != 0)
                         c.y.Add(b.y[i] / a.y[i]);
                     else

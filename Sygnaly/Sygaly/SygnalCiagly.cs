@@ -58,7 +58,7 @@ namespace Sygnaly.Sygaly
             xp = t1;
             xk = t1 + d;
 
-            int nTemp = 1000;
+            int n = base.n;
 
             dx = (xk - xp) / (double)nint;
 
@@ -91,7 +91,7 @@ namespace Sygnaly.Sygaly
             else if (x == 4)
             {
                 srednia = (1 / ((t1 + d) - t1) * Integral(1));
-                for (int i = 1; i < nTemp; i++)
+                for (int i = 1; i < n; i++)
                 {
                     integ += Base(y[i].Real);
                 }
