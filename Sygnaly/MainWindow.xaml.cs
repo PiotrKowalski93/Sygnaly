@@ -66,6 +66,9 @@ namespace Sygnaly
             IlePrzedzialow.Items.Add("10");
             IlePrzedzialow.Items.Add("15");
             IlePrzedzialow.Items.Add("20");
+            Konwersja.Items.Add("Sygnał 1");
+            Konwersja.Items.Add("Sygnał 2");
+            Konwersja.Items.Add("Sygnał Wynikowy");
         }
         private void ZaladujSygnal(int nr)
         {
@@ -488,6 +491,24 @@ namespace Sygnaly
         {
             StatyczneDane.DaneStatyczne.dane = b;
             Faza win2 = new Faza(ile);
+            win2.Show();
+        }
+
+        private void KonwersjaSygnalow_Click(object sender, RoutedEventArgs e)
+        {
+            if (Konwersja.SelectedItem.ToString() == "Sygnał 1")
+            { 
+            StatyczneDane.DaneStatyczne.dane = a;
+            }
+            else if (Konwersja.SelectedItem.ToString() == "Sygnał 1")
+            {
+                StatyczneDane.DaneStatyczne.dane = b;
+            }
+            else
+            {
+                StatyczneDane.DaneStatyczne.dane = c;
+            }
+            KonwersjaSygnalow win2 = new KonwersjaSygnalow();
             win2.Show();
         }
     }

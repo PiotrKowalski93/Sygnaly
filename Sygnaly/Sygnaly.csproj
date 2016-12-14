@@ -80,6 +80,9 @@
     <Compile Include="Faza.xaml.cs">
       <DependentUpon>Faza.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KonwersjaSygnalow.xaml.cs">
+      <DependentUpon>KonwersjaSygnalow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Obliczenia.xaml.cs">
       <DependentUpon>Obliczenia.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,10 @@
     <Compile Include="SygnalyDyskretne\ImpulsJednostkowy.cs" />
     <Compile Include="SygnalyDyskretne\SzumImpulsowy.cs" />
     <Page Include="Faza.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KonwersjaSygnalow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
