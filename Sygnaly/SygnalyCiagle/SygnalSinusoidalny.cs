@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sygnaly.SygnalyCiagle
 {
+    [Serializable]
     class SygnalSinusoidalny : SygnalCiagly
     {
         public SygnalSinusoidalny(double A, double T, double t1, double d)

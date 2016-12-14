@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sygnaly.SygnalyCiagle
 {
+    [Serializable]
     class SkokJednostkowy : SygnalCiagly
     {
         public double ts;

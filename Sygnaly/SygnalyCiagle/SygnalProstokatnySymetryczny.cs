@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sygnaly.SygnalyCiagle
 {
+    [Serializable]
     class SygnalProstokatnySymetryczny : SygnalCiagly
     {
         public SygnalProstokatnySymetryczny(double A, double T, double t1, double d, double kw)

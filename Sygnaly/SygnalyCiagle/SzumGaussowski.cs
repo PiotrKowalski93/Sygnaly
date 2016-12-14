@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sygnaly.SygnalyCiagle
 {
+    [Serializable]
     class SzumGaussowski : SygnalCiagly
     {
         private Random random = new Random();

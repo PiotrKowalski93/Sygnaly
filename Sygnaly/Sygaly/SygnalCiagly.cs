@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Sygnaly.Sygaly
 {
+
+    [Serializable]
     class SygnalCiagly : Sygnal
     {
         private double xp;

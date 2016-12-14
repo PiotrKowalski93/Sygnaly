@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Sygnaly.SygnalyCiagle
 {
+    [Serializable]
     class SygnalProstokatny : SygnalCiagly
     {
-
         public SygnalProstokatny(double A, double T, double t1, double d, double kw)
         {
             this.A = A;

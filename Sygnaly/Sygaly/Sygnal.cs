@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sygnaly.Sygaly
 {
+    [Serializable]
     class Sygnal
     {
         // Wartosci Opisujace sygnal
