@@ -9,18 +9,19 @@
         Title="Moduł i Faza" Height="700" Width="1202.682">
     <Grid Background="#FFB8B6B6" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="17*"/>
-            <ColumnDefinition Width="581*"/>
+            <ColumnDefinition Width="34*"/>
+            <ColumnDefinition Width="882*"/>
+            <ColumnDefinition Width="279*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <chartingToolkit:Chart x:Name="FazaWykres" Margin="1.6,361,625,34.4" Grid.Column="1" />
-        <chartingToolkit:Chart x:Name="ModulWykres" Margin="1.6,40,625,353.4" Grid.Column="1" />
-        <chartingToolkit:Chart x:Name="ModulHistogram" Margin="585.6,40,41,353.4" Grid.Column="1" />
-        <chartingToolkit:Chart x:Name="FazaHistogram" Margin="585.6,361,41,34.4" Grid.Column="1" />
+        <chartingToolkit:Chart x:Name="FazaWykres" Margin="1.6,361,345.531,34.4" Grid.Column="1" />
+        <chartingToolkit:Chart x:Name="ModulWykres" Margin="1.6,40,345.531,353.4" Grid.Column="1" />
+        <chartingToolkit:Chart x:Name="ModulHistogram" Margin="585.6,40,41,353.4" Grid.Column="1" Grid.ColumnSpan="2" />
+        <chartingToolkit:Chart x:Name="FazaHistogram" Margin="585.6,361,41,34.4" Grid.Column="1" Grid.ColumnSpan="2" />
         <Label Content="Moduł" HorizontalAlignment="Left" Margin="536.6,10,0,0" VerticalAlignment="Top"  Height="25" Grid.Column="1"/>
-        <Label Content="  Faza" HorizontalAlignment="Center" Margin="536.6,329,580,0" VerticalAlignment="Top" Height="24" Width="45" Grid.Column="1"/>
+        <Label Content="  Faza" HorizontalAlignment="Center" Margin="536.6,329,300.531,0" VerticalAlignment="Top" Height="24" Width="45" Grid.Column="1"/>
 
     </Grid>
 </Window>

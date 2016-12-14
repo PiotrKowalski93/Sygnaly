@@ -97,13 +97,13 @@ namespace Sygnaly
             else if (DaneStatyczne.dane is ImpulsJednostkowy)
             {
                 ImpulsJednostkowy B = (ImpulsJednostkowy)DaneStatyczne.dane;
-                policzFaze(B);
+                policzModul(B);
                 policzFaze(B);
             }
             else
             {
                 SzumImpulsowy B = (SzumImpulsowy)DaneStatyczne.dane;
-                policzFaze(B);
+                policzModul(B);
                 policzFaze(B);
             }
         }

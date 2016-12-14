@@ -1,0 +1,46 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sygnaly"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" x:Class="Sygnaly.KonwersjaSygnalow"
+        mc:Ignorable="d"
+        Title="KonwersjaSygnalow" Height="750.29" Width="950.965">
+    <Grid Background="#FFB8B6B6" Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="173*"/>
+            <ColumnDefinition Width="121*"/>
+        </Grid.ColumnDefinitions>
+        <chartingToolkit:Chart x:Name="Baza" Margin="479,0,-0.2,477.8" Grid.ColumnSpan="2">
+            <chartingToolkit:Chart.LegendStyle>
+                <Style TargetType="Control">
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </Style>
+            </chartingToolkit:Chart.LegendStyle>
+        </chartingToolkit:Chart>
+        <ComboBox x:Name="Parametry" Margin="358,356,102,334.8"/>
+        <ComboBox x:Name="SposobKonwersji" SelectionChanged="ZmianaSposobuKonwersji" SelectedItem="Próbkowanie równomierne" Margin="149,307,102,383.8"/>
+        <Button x:Name="Konwertuj" Content="Konwertuj" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Width="96" Margin="358,411,0,0" Click="Konwertuj_Click" Height="30"/>
+        <chartingToolkit:Chart x:Name="PoKonwersji" Margin="479,243,-0.2,234.8" Grid.ColumnSpan="2" >
+            <chartingToolkit:Chart.LegendStyle>
+                <Style TargetType="Control">
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </Style>
+            </chartingToolkit:Chart.LegendStyle>
+        </chartingToolkit:Chart>
+        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Typ konwersji" VerticalAlignment="Center" Margin="0,315,428,383.8" Height="22" Width="73" RenderTransformOrigin="0.564,1.88"/>
+        <chartingToolkit:Chart x:Name="PoRekonstrukcji" Margin="479,486,-0.2,-8.2" Grid.ColumnSpan="2" >
+            <chartingToolkit:Chart.LegendStyle>
+                <Style TargetType="{x:Type Control}">
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </Style>
+            </chartingToolkit:Chart.LegendStyle>
+        </chartingToolkit:Chart>
+        <TextBlock x:Name="ParametryTekst"  HorizontalAlignment="Right" TextWrapping="Wrap" Text="Parametry" VerticalAlignment="Top" Margin="0,365,215,0" Height="21"/>
+
+    </Grid>
+</Window>
