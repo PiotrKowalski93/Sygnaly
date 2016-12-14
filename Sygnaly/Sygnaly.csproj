@@ -83,6 +83,12 @@
     <Compile Include="KonwersjaSygnalow.xaml.cs">
       <DependentUpon>KonwersjaSygnalow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Konwertery\SINCConverter.cs" />
+    <Compile Include="Kwantyzatory\MeanQuantizer.cs" />
+    <Compile Include="Kwantyzatory\NoneQuantizer.cs" />
+    <Compile Include="Kwantyzatory\QuantizationTables.cs" />
+    <Compile Include="Kwantyzatory\Quantizer.cs" />
+    <Compile Include="Kwantyzatory\RoundDownQuantizer.cs" />
     <Compile Include="Obliczenia.xaml.cs">
       <DependentUpon>Obliczenia.xaml</DependentUpon>
     </Compile>
@@ -158,6 +164,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

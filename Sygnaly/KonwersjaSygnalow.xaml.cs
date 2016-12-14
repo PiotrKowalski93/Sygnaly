@@ -29,6 +29,7 @@ namespace Sygnaly
         public List<KeyValuePair<double, double>> punkty;
         Sygnal przekonwertowany;
         Sygnal A;
+
         public KonwersjaSygnalow()
         {
             InitializeComponent();
@@ -94,26 +95,44 @@ namespace Sygnaly
                 wyswietlSygnal(A);
             }
         }
+
         private void AddItems()
         {
-            SposobKonwersji.Items.Add("Próbkowanie równomierne");
-            SposobKonwersji.Items.Add("Kwantyzacja równomierna z obcięciem");
-            SposobKonwersji.Items.Add("Kwantyzacja równomierna z zaokrągleniem");
+            TrybKwantyzacji.Items.Add("Próbkowanie równomierne");
+            TrybKwantyzacji.Items.Add("Kwantyzacja równomierna z obcięciem");
+            TrybKwantyzacji.Items.Add("Kwantyzacja równomierna z zaokrągleniem");
+
+            LiczbaBitowKwantyzacji.Items.Add("1");
+            LiczbaBitowKwantyzacji.Items.Add("2");
+            LiczbaBitowKwantyzacji.Items.Add("4");
+            LiczbaBitowKwantyzacji.Items.Add("6");
+            LiczbaBitowKwantyzacji.Items.Add("8");
+            LiczbaBitowKwantyzacji.Items.Add("12");
+            LiczbaBitowKwantyzacji.Items.Add("14");
+
+            TypKonwersji.Items.Add("Zero-order hold");
+            TypKonwersji.Items.Add("First-order hold");
+            TypKonwersji.Items.Add("Sinus Cardinalis");
         }
+
         private void wyswietlSygnal(Sygnal A)
         {
             LineSeries mySeries = new LineSeries();
             mySeries.Title = "Baza";
             mySeries.IndependentValueBinding = new Binding("Key");
             mySeries.DependentValueBinding = new Binding("Value");
+
             Style style = new Style(typeof(LineDataPoint));
             style.Setters.Add(new Setter(LineDataPoint.TemplateProperty, null));
             mySeries.DataPointStyle = style;
+
             punkty = new List<KeyValuePair<double, double>>();
+
             for (int i = 0; i < A.x.Count; i++)
             {
                 punkty.Add(new KeyValuePair<double, double>(A.x[i].Real, A.y[i].Real));
             }
+
             mySeries.ItemsSource = punkty;
 
             Baza.Series.Add(mySeries);
@@ -124,48 +143,56 @@ namespace Sygnaly
             mySeries.Title = "Baza";
             mySeries.IndependentValueBinding = new Binding("Key");
             mySeries.DependentValueBinding = new Binding("Value");
+
             punkty = new List<KeyValuePair<double, double>>();
+
             for (int i = 0; i < B.x.Count; i++)
             {
                 punkty.Add(new KeyValuePair<double, double>(B.x[i].Real, B.y[i].Real));
             }
+
             mySeries.ItemsSource = punkty;
             Baza.Series.Add(mySeries);
         }
 
         private void ZmianaSposobuKonwersji(object sender, SelectionChangedEventArgs e)
         {
-            Parametry.Items.Clear();
-            if (SposobKonwersji.SelectedItem.ToString() == "Próbkowanie równomierne")
-            {
-                Parametry.Items.Add("0,25");
-                Parametry.Items.Add("0,5");
-                Parametry.Items.Add("1");
-                Parametry.Items.Add("2");
-                Parametry.Items.Add("3");
-                Parametry.Items.Add("5");
-                Parametry.Items.Add("10");
-                Parametry.Items.Add("20");
-                ParametryTekst.Text = "Częstotliwość próbkowania";
-            }
-            else if (SposobKonwersji.SelectedItem.ToString() == "Kwantyzacja równomierna z obcięciem")
-            {
-                ParametryTekst.Text = "Parametry kwantyzacji z obcięciem";
-            }
-            else 
-            {
-                ParametryTekst.Text = "Parametry kwantyzacji z zaokrągleniem";
-            }
+            //Parametry.Items.Clear();
+
+            //if (TrybKwantyzacji.SelectedItem.ToString() == "Próbkowanie równomierne")
+            //{
+            //    Parametry.Items.Add("0,25");
+            //    Parametry.Items.Add("0,5");
+            //    Parametry.Items.Add("1");
+            //    Parametry.Items.Add("2");
+            //    Parametry.Items.Add("3");
+            //    Parametry.Items.Add("5");
+            //    Parametry.Items.Add("10");
+            //    Parametry.Items.Add("20");
+            //    ParametryTekst.Text = "Częstotliwość próbkowania";
+            //}
+            //else if (TrybKwantyzacji.SelectedItem.ToString() == "Kwantyzacja równomierna z obcięciem")
+            //{
+            //    ParametryTekst.Text = "Parametry kwantyzacji z obcięciem";
+            //}
+            //else 
+            //{
+            //    ParametryTekst.Text = "Parametry kwantyzacji z zaokrągleniem";
+            //}
         }
 
         private void Konwertuj_Click(object sender, RoutedEventArgs e)
         {
             PoKonwersji.Series.Clear();
+
             przekonwertowany = new Sygnal();
+
             przekonwertowany.x = new List<System.Numerics.Complex>();
             przekonwertowany.y = new List<System.Numerics.Complex>();
+
             double maxX = A.x[0].Real;
             double minX = A.x[0].Real;
+
             for (int i = 0; i < A.x.Count; i++)
             {
                 if (A.x[i].Real > maxX)
@@ -177,17 +204,21 @@ namespace Sygnaly
                     minX = A.x[i].Real;
                 }
             }
+
             A.d = maxX - minX;
-            if (SposobKonwersji.SelectedItem.ToString() == "Próbkowanie równomierne")
+
+            if (TrybKwantyzacji.SelectedItem.ToString() == "Próbkowanie równomierne")
             {
-                double czestotliwosc =Double.Parse(Parametry.SelectedItem.ToString());
+                double czestotliwosc = Double.Parse(Czestotliwosc.Text);
                 int ilePunktow = (int)(czestotliwosc * A.d);
                 int coIle = (int)(A.n / ilePunktow);
+
                 for (int i = 0; i < A.n; i=i+coIle)
                 {
                     przekonwertowany.x.Add(A.x[i]);
                     przekonwertowany.y.Add(A.y[i]);
                 }
+
                 przekonwertowany.x.Add(A.x[A.x.Count - 1]);
                 przekonwertowany.y.Add(A.y[A.y.Count - 1]);
                 ScatterSeries mySeries = new ScatterSeries();
@@ -202,6 +233,11 @@ namespace Sygnaly
                 mySeries.ItemsSource = punkty;
                 PoKonwersji.Series.Add(mySeries);
             }
+        }
+
+        private void Próbkuj_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

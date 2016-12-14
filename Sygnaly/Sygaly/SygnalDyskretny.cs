@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Sygnaly.Sygaly
 {
-
     [Serializable]
     class SygnalDyskretny : Sygnal
     {

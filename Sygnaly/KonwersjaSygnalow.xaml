@@ -6,41 +6,90 @@
         xmlns:local="clr-namespace:Sygnaly"
         xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" x:Class="Sygnaly.KonwersjaSygnalow"
         mc:Ignorable="d"
-        Title="KonwersjaSygnalow" Height="750.29" Width="950.965">
+        Title="KonwersjaSygnalow" Height="700" Width="900">
     <Grid Background="#FFB8B6B6" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="173*"/>
-            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
-        <chartingToolkit:Chart x:Name="Baza" Margin="479,0,-0.2,477.8" Grid.ColumnSpan="2">
-            <chartingToolkit:Chart.LegendStyle>
-                <Style TargetType="Control">
-                    <Setter Property="Width" Value="0"/>
-                    <Setter Property="Height" Value="0"/>
-                </Style>
-            </chartingToolkit:Chart.LegendStyle>
-        </chartingToolkit:Chart>
-        <ComboBox x:Name="Parametry" Margin="358,356,102,334.8"/>
-        <ComboBox x:Name="SposobKonwersji" SelectionChanged="ZmianaSposobuKonwersji" SelectedItem="Próbkowanie równomierne" Margin="149,307,102,383.8"/>
-        <Button x:Name="Konwertuj" Content="Konwertuj" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Width="96" Margin="358,411,0,0" Click="Konwertuj_Click" Height="30"/>
-        <chartingToolkit:Chart x:Name="PoKonwersji" Margin="479,243,-0.2,234.8" Grid.ColumnSpan="2" >
-            <chartingToolkit:Chart.LegendStyle>
-                <Style TargetType="Control">
-                    <Setter Property="Width" Value="0"/>
-                    <Setter Property="Height" Value="0"/>
-                </Style>
-            </chartingToolkit:Chart.LegendStyle>
-        </chartingToolkit:Chart>
-        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Typ konwersji" VerticalAlignment="Center" Margin="0,315,428,383.8" Height="22" Width="73" RenderTransformOrigin="0.564,1.88"/>
-        <chartingToolkit:Chart x:Name="PoRekonstrukcji" Margin="479,486,-0.2,-8.2" Grid.ColumnSpan="2" >
-            <chartingToolkit:Chart.LegendStyle>
-                <Style TargetType="{x:Type Control}">
-                    <Setter Property="Width" Value="0"/>
-                    <Setter Property="Height" Value="0"/>
-                </Style>
-            </chartingToolkit:Chart.LegendStyle>
-        </chartingToolkit:Chart>
-        <TextBlock x:Name="ParametryTekst"  HorizontalAlignment="Right" TextWrapping="Wrap" Text="Parametry" VerticalAlignment="Top" Margin="0,365,215,0" Height="21"/>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Tryb Kwantyzacji" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="5,5"/>
+            <ComboBox x:Name="TrybKwantyzacji" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="180" Margin="5,5"/>
+
+            <Label Content="Liczba Bitów Kwantyzacji" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="5,5"/>
+            <ComboBox x:Name="LiczbaBitowKwantyzacji" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="180" Margin="5,5"/>
+
+            <Button x:Name="Próbkuj" Content="Próbkuj" Grid.Row="2" Grid.Column="1" FontSize="14" HorizontalAlignment="Left"  Width="95" Margin="5,5" Height="30" Click="Próbkuj_Click"/>
+            
+            
+            <Label Content="Typ Konwersji" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="5,5"/>
+            <ComboBox x:Name="TypKonwersji" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Width="180" Margin="5,5"/>
+
+            <Label Content="Częstotliwość [Hz]" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="5,5"/>
+            <TextBox x:Name="Czestotliwosc" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Width="180" Margin="5,5"/>
+           
+            <Button x:Name="Konwertuj" Content="Konwertuj" Grid.Row="5" Grid.Column="1" FontSize="14" HorizontalAlignment="Left"  Width="95" Margin="5,5" Click="Konwertuj_Click" Height="30"/>
+
+
+            <!--<ComboBox x:Name="Parametry" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Width="180"/>-->
+            <!--<ComboBox x:Name="SposobKonwersji" SelectionChanged="ZmianaSposobuKonwersji" SelectedItem="Próbkowanie równomierne" Margin="149,307,102,383.8"/>-->
+            <!--<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Typ konwersji" VerticalAlignment="Center" Margin="0,315,428,383.8" Height="22" Width="73" RenderTransformOrigin="0.564,1.88"/>
+            <TextBlock x:Name="ParametryTekst"  HorizontalAlignment="Right" TextWrapping="Wrap" Text="Parametry" VerticalAlignment="Top" Margin="0,365,215,0" Height="21"/>-->
+
+
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <chartingToolkit:Chart x:Name="Baza" Grid.Row="0" Width="450" Height="200">
+                <chartingToolkit:Chart.LegendStyle>
+                    <Style TargetType="Control">
+                        <Setter Property="Width" Value="0"/>
+                        <Setter Property="Height" Value="0"/>
+                    </Style>
+                </chartingToolkit:Chart.LegendStyle>
+            </chartingToolkit:Chart>
+
+            <chartingToolkit:Chart x:Name="PoKonwersji" Grid.Row="1" Width="450" Height="200" >
+                <chartingToolkit:Chart.LegendStyle>
+                    <Style TargetType="Control">
+                        <Setter Property="Width" Value="0"/>
+                        <Setter Property="Height" Value="0"/>
+                    </Style>
+                </chartingToolkit:Chart.LegendStyle>
+            </chartingToolkit:Chart>
+
+
+            <chartingToolkit:Chart x:Name="PoRekonstrukcji" Grid.Row="2" Width="450" Height="200" >
+                <chartingToolkit:Chart.LegendStyle>
+                    <Style TargetType="{x:Type Control}">
+                        <Setter Property="Width" Value="0"/>
+                        <Setter Property="Height" Value="0"/>
+                    </Style>
+                </chartingToolkit:Chart.LegendStyle>
+            </chartingToolkit:Chart>
+        </Grid>
+
 
     </Grid>
 </Window>

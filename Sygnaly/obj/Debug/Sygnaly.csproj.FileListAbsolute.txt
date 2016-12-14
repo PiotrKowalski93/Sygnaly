@@ -38,7 +38,6 @@ C:\Users\KowalskiP\Downloads\SygnalyBlad\Sygnaly\Sygnaly\obj\Debug\Obliczenia.ba
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\bin\Debug\Sygnaly.exe.config
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.exe
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.pdb
-C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.csprojResolveAssemblyReference.cache
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\MainWindow.g.cs
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Obliczenia.g.cs
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\App.g.cs
@@ -85,3 +84,6 @@ D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\bin\Debug\Newtons
 D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\bin\Debug\Newtonsoft.Json.xml
 D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\KonwersjaSygnalow.g.cs
 D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\KonwersjaSygnalow.baml
+C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\KonwersjaSygnalow.g.cs
+C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\KonwersjaSygnalow.baml
+C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.csprojResolveAssemblyReference.cache
