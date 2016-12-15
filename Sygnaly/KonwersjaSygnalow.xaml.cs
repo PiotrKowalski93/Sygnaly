@@ -18,6 +18,7 @@ using Sygnaly.SygnalyCiagle;
 using Sygnaly.SygnalyDyskretne;
 using Sygnaly.StatyczneDane;
 using Sygnaly.Properties;
+using Sygnaly.Kwantyzatory;
 
 namespace Sygnaly
 {
@@ -187,7 +188,7 @@ namespace Sygnaly
                 ParametryTekst.Text = "Liczba bitów kwantyzacji";
             }
         }
-        
+
         private void Konwertuj_Click(object sender, RoutedEventArgs e)
         {
             PoKonwersji.Series.Clear();
@@ -214,12 +215,12 @@ namespace Sygnaly
 
             A.d = maxX - minX;
 
-            if (TypKonwersji.SelectedItem.ToString() == "Próbkowanie równomierne")
-            {
-                double czestotliwosc = Double.Parse(Parametry.SelectedItem.ToString());
-                int ilePunktow = (int)(czestotliwosc * A.d);
-                int coIle = (int)(A.n / ilePunktow);
+            double czestotliwosc = Double.Parse(Parametry.SelectedItem.ToString());
+            int ilePunktow = (int)(czestotliwosc * A.d);
+            int coIle = (int)(A.n / ilePunktow);
 
+            if (TypKonwersji.SelectedItem.ToString() == "Próbkowanie równomierne")
+            {                    
                 for (int i = 0; i < A.n; i = i + coIle)
                 {
                     przekonwertowany.x.Add(A.x[i]);
@@ -227,20 +228,48 @@ namespace Sygnaly
                 }
 
                 przekonwertowany.x.Add(A.x[A.x.Count - 1]);
-                przekonwertowany.y.Add(A.y[A.y.Count - 1]);
-                ScatterSeries mySeries = new ScatterSeries();
-                mySeries.Title = "Przekonwertowany";
-                mySeries.IndependentValueBinding = new Binding("Key");
-                mySeries.DependentValueBinding = new Binding("Value");
-                punkty = new List<KeyValuePair<double, double>>();
-                for (int i = 0; i < przekonwertowany.x.Count; i++)
-                {
-                    punkty.Add(new KeyValuePair<double, double>(przekonwertowany.x[i].Real, przekonwertowany.y[i].Real));
-                }
-                mySeries.ItemsSource = punkty;
-                PoKonwersji.Series.Add(mySeries);
+                przekonwertowany.y.Add(A.y[A.y.Count - 1]);               
             }
 
+            if (TypKonwersji.SelectedItem.ToString() == "Kwantyzacja równomierna z obcięciem")
+            {
+                int liczbaBitow = int.Parse(Parametry.SelectedItem.ToString());
+
+                RoundDownQuantizer rdq = new RoundDownQuantizer(liczbaBitow);
+
+                for (int i = 0; i < A.n; i = i + coIle)
+                {
+                    przekonwertowany.x.Add(A.x[i]);
+                    przekonwertowany.y.Add(rdq.quantizeSample(A.y[i], A.A));
+                }
+            }
+
+            if (TypKonwersji.SelectedItem.ToString() == "Kwantyzacja równomierna z zaokrągleniem")
+            {
+                int liczbaBitow = int.Parse(Parametry.SelectedItem.ToString());
+
+                MeanQuantizer mq = new MeanQuantizer(liczbaBitow);
+
+                for (int i = 0; i < A.n; i = i + coIle)
+                {
+                    przekonwertowany.x.Add(A.x[i]);
+                    przekonwertowany.y.Add(mq.quantizeSample(A.y[i], A.A));
+                }
+            }
+
+            ScatterSeries mySeries = new ScatterSeries();
+            mySeries.Title = "Przekonwertowany";
+            mySeries.IndependentValueBinding = new Binding("Key");
+            mySeries.DependentValueBinding = new Binding("Value");
+            punkty = new List<KeyValuePair<double, double>>();
+
+            for (int i = 0; i < przekonwertowany.x.Count; i++)
+            {
+                punkty.Add(new KeyValuePair<double, double>(przekonwertowany.x[i].Real, przekonwertowany.y[i].Real));
+            }
+
+            mySeries.ItemsSource = punkty;
+            PoKonwersji.Series.Add(mySeries);
         }
 
         private void Rekonstruuj_Click(object sender, RoutedEventArgs e)
@@ -268,15 +297,20 @@ namespace Sygnaly
                         minX = przekonwertowany.x[i].Real;
                     }
                 }
+                
                 przekonwertowany.d = maxX - minX;
+
                 przekonwertowany.t1 = minX;
+
                 int ileDodatkowych=(int)(400/przekonwertowany.d);
                 int probka = 0;
                 double roznica = (przekonwertowany.y[2].Real - przekonwertowany.y[1].Real) / (ileDodatkowych + 1);
+
                 for (int i = 0; i < przekonwertowany.x.Count; i++)
                 {
                     zrekonstruowany.x.Add(przekonwertowany.x[i].Real);
                     zrekonstruowany.y.Add(przekonwertowany.y[i].Real);
+
                     for (int j = 0; j < ileDodatkowych; j++)
                     {
                         if (i!= przekonwertowany.x.Count-1)
@@ -290,6 +324,7 @@ namespace Sygnaly
 
                     }
                 }
+
                 LineSeries mySeries = new LineSeries();
                 mySeries.Title = "Zrekonstruowany";
                 mySeries.IndependentValueBinding = new Binding("Key");
@@ -327,6 +362,68 @@ namespace Sygnaly
                 mySeries.ItemsSource = punkty;
                 PoRekonstrukcji.Series.Add(mySeries);
             }
+            else
+            {
+
+            }
+        }
+
+        private void LiczStatystyki_Click(object sender, RoutedEventArgs e)
+        {
+            //SygnalDyskretny przedRekonstrukcja = new SygnalDyskretny();
+            //przedRekonstrukcja.x = new List<System.Numerics.Complex>();
+            //przedRekonstrukcja.y = new List<System.Numerics.Complex>();
+
+            //SygnalDyskretny poRekonstrukcji = new SygnalDyskretny();
+            //poRekonstrukcji.x = new List<System.Numerics.Complex>();
+            //poRekonstrukcji.y = new List<System.Numerics.Complex>();
+
+            //przedRekonstrukcja.A = A.A;
+            //poRekonstrukcji.A = zrekonstruowany.A;
+
+            //double maxX = A.x[0].Real;
+            //double minX = A.x[0].Real;
+
+            //for (int i = 0; i < A.x.Count; i++)
+            //{
+            //    if (A.x[i].Real > maxX)
+            //    {
+            //        maxX = A.x[i].Real;
+            //    }
+            //    if (A.x[i].Real < minX)
+            //    {
+            //        minX = A.x[i].Real;
+            //    }
+            //}
+
+            //A.d = maxX - minX;
+
+            //double czestotliwosc = 50;
+            //int ilePunktow = (int)(czestotliwosc * A.d);
+            //int coIle = (int)(A.n / ilePunktow);
+            
+            //for (int i = 0; i < A.n; i = i + coIle)
+            //{
+            //    przedRekonstrukcja.x.Add(A.x[i]);
+            //    przedRekonstrukcja.y.Add(A.y[i]);
+
+            //    poRekonstrukcji.x.Add(zrekonstruowany.x[i]);
+            //    poRekonstrukcji.y.Add(zrekonstruowany.y[i]);
+            //}
+
+            //przedRekonstrukcja.x.Add(A.x[A.x.Count - 1]);
+            //przedRekonstrukcja.y.Add(A.y[A.y.Count - 1]);
+
+            //poRekonstrukcji.x.Add(zrekonstruowany.x[zrekonstruowany.x.Count - 1]);
+            //poRekonstrukcji.y.Add(zrekonstruowany.y[zrekonstruowany.y.Count - 1]);
+
+            //przedRekonstrukcja.PodzielPrzezAmplitude();
+            //poRekonstrukcji.PodzielPrzezAmplitude();
+
+            //MSE.Text = SignalComparer.CalculateMSE(przedRekonstrukcja, poRekonstrukcji).ToString();
+            //SNR.Text = SignalComparer.CalculateSNR(przedRekonstrukcja, poRekonstrukcji).ToString();
+            //PSNR.Text = SignalComparer.CalculatePSNR(przedRekonstrukcja, poRekonstrukcji).ToString();
+            //MD.Text = SignalComparer.CalculateMD(przedRekonstrukcja, poRekonstrukcji).ToString();
         }
     }
 }

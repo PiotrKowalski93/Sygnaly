@@ -21,13 +21,17 @@ namespace Sygnaly.Kwantyzatory
         {
             return value * amplitude;
         }
+
         int sign = 1;
+
         if (value.Real < 0)
         {
             sign = -1;
         }
-        int interval = getInterval(value.Real);
+
+        int interval = getInterval(value.Real / amplitude);
         double newReal = (stepsTable[sign * interval] + stepsTable[(sign * interval) + 1]) / 2.0;
+
         return new Complex(newReal * amplitude * sign, value.Imaginary);
     }
 }

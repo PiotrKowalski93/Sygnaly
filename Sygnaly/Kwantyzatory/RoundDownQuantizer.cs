@@ -25,7 +25,7 @@ namespace Sygnaly.Kwantyzatory
         {
             sign = -1;
         }
-        int interval = getInterval(value.Real);
+        int interval = getInterval(value.Real / amplitude);
         double newReal = stepsTable[sign * interval];
         return new Complex(newReal * amplitude * sign, value.Imaginary);
     }

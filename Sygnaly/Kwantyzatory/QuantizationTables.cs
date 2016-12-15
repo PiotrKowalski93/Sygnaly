@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Sygnaly.Kwantyzatory
 {
-    public class QuantizationTables
+    public static class QuantizationTables
     {
         public static double[] ONE = { 0, 0.5, 1 };
         public static double[] TWO = { 0, 0.25, 0.5, 0.75, 1 };
-        public static double[] FOUR;
-        public static double[] SIX;
-        public static double[] EIGHT;
-        public static double[] TWELVE;
-        public static double[] SIXTEEN;
+        public static double[] FOUR = GenerateTable(4);
+        public static double[] SIX = GenerateTable(6);
+        public static double[] EIGHT = GenerateTable(8);
+        public static double[] TWELVE = GenerateTable(12);
+        public static double[] SIXTEEN = GenerateTable(16);
 
-        QuantizationTables()
-        {
-            FOUR = GenerateTable(4);
-            SIX = GenerateTable(6);
-            EIGHT = GenerateTable(8);
-            TWELVE = GenerateTable(12);
-            SIXTEEN = GenerateTable(16);
-        }
+        //public QuantizationTables()
+        //{
+        //    FOUR = GenerateTable(4);
+        //    SIX = GenerateTable(6);
+        //    EIGHT = GenerateTable(8);
+        //    TWELVE = GenerateTable(12);
+        //    SIXTEEN = GenerateTable(16);
+        //}
 
     private static double[] GenerateTable(int bits)
     {

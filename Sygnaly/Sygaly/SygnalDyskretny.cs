@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,14 @@ namespace Sygnaly.Sygaly
     [Serializable]
     class SygnalDyskretny : Sygnal
     {
+        public void PodzielPrzezAmplitude()
+        {
+            for (int i = 0; i < y.Count; i++)
+            {
+                y[i] = new Complex(y[i].Real / A, 0);
+            }
+        }
+
         public double LiczSrednia()
         {
             double sum = 0.0;

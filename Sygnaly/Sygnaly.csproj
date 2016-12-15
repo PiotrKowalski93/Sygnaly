@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Serializacja\Serializacja.cs" />
     <Compile Include="StatyczneDane\DaneStatyczne.cs" />
+    <Compile Include="StatyczneDane\SignalComparer.cs" />
     <Compile Include="Sygaly\Sygnal.cs" />
     <Compile Include="Sygaly\SygnalCiagly.cs" />
     <Compile Include="Sygaly\SygnalDyskretny.cs" />
