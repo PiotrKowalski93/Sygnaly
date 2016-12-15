@@ -27,8 +27,9 @@ namespace Sygnaly
     public partial class KonwersjaSygnalow : Window
     {
         public List<KeyValuePair<double, double>> punkty;
-        Sygnal przekonwertowany;
         Sygnal A;
+        Sygnal przekonwertowany;
+        Sygnal zrekonstruowany;
 
         public KonwersjaSygnalow()
         {
@@ -98,21 +99,13 @@ namespace Sygnaly
 
         private void AddItems()
         {
-            TrybKwantyzacji.Items.Add("Próbkowanie równomierne");
-            TrybKwantyzacji.Items.Add("Kwantyzacja równomierna z obcięciem");
-            TrybKwantyzacji.Items.Add("Kwantyzacja równomierna z zaokrągleniem");
-
-            LiczbaBitowKwantyzacji.Items.Add("1");
-            LiczbaBitowKwantyzacji.Items.Add("2");
-            LiczbaBitowKwantyzacji.Items.Add("4");
-            LiczbaBitowKwantyzacji.Items.Add("6");
-            LiczbaBitowKwantyzacji.Items.Add("8");
-            LiczbaBitowKwantyzacji.Items.Add("12");
-            LiczbaBitowKwantyzacji.Items.Add("14");
-
-            TypKonwersji.Items.Add("Zero-order hold");
-            TypKonwersji.Items.Add("First-order hold");
-            TypKonwersji.Items.Add("Sinus Cardinalis");
+            TypKonwersji.Items.Add("Próbkowanie równomierne");
+            TypKonwersji.Items.Add("Kwantyzacja równomierna z obcięciem");
+            TypKonwersji.Items.Add("Kwantyzacja równomierna z zaokrągleniem");
+            
+            MetodaRekonstrukcji.Items.Add("Zero-order hold");
+            MetodaRekonstrukcji.Items.Add("First-order hold");
+            MetodaRekonstrukcji.Items.Add("Sinus Cardinalis");
         }
 
         private void wyswietlSygnal(Sygnal A)
@@ -157,30 +150,44 @@ namespace Sygnaly
 
         private void ZmianaSposobuKonwersji(object sender, SelectionChangedEventArgs e)
         {
-            //Parametry.Items.Clear();
+            Parametry.Items.Clear();
 
-            //if (TrybKwantyzacji.SelectedItem.ToString() == "Próbkowanie równomierne")
-            //{
-            //    Parametry.Items.Add("0,25");
-            //    Parametry.Items.Add("0,5");
-            //    Parametry.Items.Add("1");
-            //    Parametry.Items.Add("2");
-            //    Parametry.Items.Add("3");
-            //    Parametry.Items.Add("5");
-            //    Parametry.Items.Add("10");
-            //    Parametry.Items.Add("20");
-            //    ParametryTekst.Text = "Częstotliwość próbkowania";
-            //}
-            //else if (TrybKwantyzacji.SelectedItem.ToString() == "Kwantyzacja równomierna z obcięciem")
-            //{
-            //    ParametryTekst.Text = "Parametry kwantyzacji z obcięciem";
-            //}
-            //else 
-            //{
-            //    ParametryTekst.Text = "Parametry kwantyzacji z zaokrągleniem";
-            //}
+            if (TypKonwersji.SelectedItem.ToString() == "Próbkowanie równomierne")
+            {
+                Parametry.Items.Add("0,25");
+                Parametry.Items.Add("0,5");
+                Parametry.Items.Add("1");
+                Parametry.Items.Add("2");
+                Parametry.Items.Add("3");
+                Parametry.Items.Add("5");
+                Parametry.Items.Add("10");
+                Parametry.Items.Add("20");
+                ParametryTekst.Text = "Częstotliwość próbkowania";
+            }
+            else if (TypKonwersji.SelectedItem.ToString() == "Kwantyzacja równomierna z obcięciem")
+            {
+                Parametry.Items.Add("1");
+                Parametry.Items.Add("2");
+                Parametry.Items.Add("4");
+                Parametry.Items.Add("6");
+                Parametry.Items.Add("8");
+                Parametry.Items.Add("12");
+                Parametry.Items.Add("14");
+                ParametryTekst.Text = "Liczba bitów kwantyzacji";
+            }
+            else 
+            {
+                Parametry.Items.Add("1");
+                Parametry.Items.Add("2");
+                Parametry.Items.Add("4");
+                Parametry.Items.Add("6");
+                Parametry.Items.Add("8");
+                Parametry.Items.Add("12");
+                Parametry.Items.Add("14");
+                ParametryTekst.Text = "Liczba bitów kwantyzacji";
+            }
         }
-
+        
         private void Konwertuj_Click(object sender, RoutedEventArgs e)
         {
             PoKonwersji.Series.Clear();
@@ -207,13 +214,13 @@ namespace Sygnaly
 
             A.d = maxX - minX;
 
-            if (TrybKwantyzacji.SelectedItem.ToString() == "Próbkowanie równomierne")
+            if (TypKonwersji.SelectedItem.ToString() == "Próbkowanie równomierne")
             {
-                double czestotliwosc = Double.Parse(Czestotliwosc.Text);
+                double czestotliwosc = Double.Parse(Parametry.SelectedItem.ToString());
                 int ilePunktow = (int)(czestotliwosc * A.d);
                 int coIle = (int)(A.n / ilePunktow);
 
-                for (int i = 0; i < A.n; i=i+coIle)
+                for (int i = 0; i < A.n; i = i + coIle)
                 {
                     przekonwertowany.x.Add(A.x[i]);
                     przekonwertowany.y.Add(A.y[i]);
@@ -233,11 +240,93 @@ namespace Sygnaly
                 mySeries.ItemsSource = punkty;
                 PoKonwersji.Series.Add(mySeries);
             }
+
         }
 
-        private void Próbkuj_Click(object sender, RoutedEventArgs e)
+        private void Rekonstruuj_Click(object sender, RoutedEventArgs e)
         {
+            PoRekonstrukcji.Series.Clear();
 
+            zrekonstruowany = new Sygnal();
+
+            zrekonstruowany.x = new List<System.Numerics.Complex>();
+            zrekonstruowany.y = new List<System.Numerics.Complex>();
+
+            if (MetodaRekonstrukcji.SelectedItem.ToString() == "Zero-order hold")
+            {
+                double maxX = przekonwertowany.x[0].Real;
+                double minX = przekonwertowany.x[0].Real;
+
+                for (int i = 0; i < przekonwertowany.x.Count; i++)
+                {
+                    if (przekonwertowany.x[i].Real > maxX)
+                    {
+                        maxX = przekonwertowany.x[i].Real;
+                    }
+                    if (przekonwertowany.x[i].Real < minX)
+                    {
+                        minX = przekonwertowany.x[i].Real;
+                    }
+                }
+                przekonwertowany.d = maxX - minX;
+                przekonwertowany.t1 = minX;
+                int ileDodatkowych=(int)(400/przekonwertowany.d);
+                int probka = 0;
+                double roznica = (przekonwertowany.y[2].Real - przekonwertowany.y[1].Real) / (ileDodatkowych + 1);
+                for (int i = 0; i < przekonwertowany.x.Count; i++)
+                {
+                    zrekonstruowany.x.Add(przekonwertowany.x[i].Real);
+                    zrekonstruowany.y.Add(przekonwertowany.y[i].Real);
+                    for (int j = 0; j < ileDodatkowych; j++)
+                    {
+                        if (i!= przekonwertowany.x.Count-1)
+                        {
+                            if (przekonwertowany.x[i].Real + (j * roznica) < przekonwertowany.x[i + 1].Real)
+                            {
+                                zrekonstruowany.x.Add(przekonwertowany.x[i].Real + (j * roznica));
+                                zrekonstruowany.y.Add(przekonwertowany.y[i].Real);
+                            }
+                        }
+
+                    }
+                }
+                LineSeries mySeries = new LineSeries();
+                mySeries.Title = "Zrekonstruowany";
+                mySeries.IndependentValueBinding = new Binding("Key");
+                mySeries.DependentValueBinding = new Binding("Value");
+                Style style = new Style(typeof(LineDataPoint));
+                style.Setters.Add(new Setter(LineDataPoint.TemplateProperty, null));
+                mySeries.DataPointStyle = style;
+                punkty = new List<KeyValuePair<double, double>>();
+                for (int i = 0; i < zrekonstruowany.x.Count; i++)
+                {
+                    punkty.Add(new KeyValuePair<double, double>(zrekonstruowany.x[i].Real, zrekonstruowany.y[i].Real));
+                }
+                mySeries.ItemsSource = punkty;
+                PoRekonstrukcji.Series.Add(mySeries);
+            }
+            else if (MetodaRekonstrukcji.SelectedItem.ToString() == "First-order hold")
+            {
+                for (int i = 0; i < przekonwertowany.x.Count; i++)
+                {
+                        zrekonstruowany.x.Add(przekonwertowany.x[i].Real);
+                        zrekonstruowany.y.Add(przekonwertowany.y[i].Real);
+                }
+                LineSeries mySeries = new LineSeries();
+                mySeries.Title = "Zrekonstruowany";
+                mySeries.IndependentValueBinding = new Binding("Key");
+                mySeries.DependentValueBinding = new Binding("Value");
+                Style style = new Style(typeof(LineDataPoint));
+                style.Setters.Add(new Setter(LineDataPoint.TemplateProperty, null));
+                mySeries.DataPointStyle = style;
+                punkty = new List<KeyValuePair<double, double>>();
+                for (int i = 0; i < zrekonstruowany.x.Count; i++)
+                {
+                    punkty.Add(new KeyValuePair<double, double>(zrekonstruowany.x[i].Real, zrekonstruowany.y[i].Real));
+                }
+                mySeries.ItemsSource = punkty;
+                PoRekonstrukcji.Series.Add(mySeries);
+            }
         }
     }
 }

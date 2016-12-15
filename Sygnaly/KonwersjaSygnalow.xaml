@@ -13,7 +13,7 @@
             <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="2,73,447,-72.6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -24,32 +24,24 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" MinWidth="162.4"/>
+                <ColumnDefinition Width="Auto" MinWidth="206.4"/>
             </Grid.ColumnDefinitions>
 
-            <Label Content="Tryb Kwantyzacji" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="5,5"/>
-            <ComboBox x:Name="TrybKwantyzacji" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="180" Margin="5,5"/>
+            <Label Content="Typ Konwersji" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,5,2.2,5" Width="82"/>
+            <ComboBox x:Name="TypKonwersji" SelectedItem="Próbkowanie równomierne" SelectionChanged="ZmianaSposobuKonwersji" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="227" Margin="7.8,5,-27.6,5"/>
 
-            <Label Content="Liczba Bitów Kwantyzacji" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="5,5"/>
-            <ComboBox x:Name="LiczbaBitowKwantyzacji" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Width="180" Margin="5,5"/>
+            <TextBlock x:Name="ParametryTekst" Text="Parametry" Grid.Row="1" Grid.Column="0" TextAlignment="Right" HorizontalAlignment="Right" Margin="0,5,10.2,4.8" Width="143"/>
+            <ComboBox x:Name="Parametry" SelectedItem="5" Grid.Row="1" Grid.Column="1" Margin="7.8,5,-26.8,4.8"/>
 
-            <Button x:Name="Próbkuj" Content="Próbkuj" Grid.Row="2" Grid.Column="1" FontSize="14" HorizontalAlignment="Left"  Width="95" Margin="5,5" Height="30" Click="Próbkuj_Click"/>
-            
-            
-            <Label Content="Typ Konwersji" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="5,5"/>
-            <ComboBox x:Name="TypKonwersji" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Width="180" Margin="5,5"/>
-
-            <Label Content="Częstotliwość [Hz]" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="5,5"/>
-            <TextBox x:Name="Czestotliwosc" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Width="180" Margin="5,5"/>
-           
-            <Button x:Name="Konwertuj" Content="Konwertuj" Grid.Row="5" Grid.Column="1" FontSize="14" HorizontalAlignment="Left"  Width="95" Margin="5,5" Click="Konwertuj_Click" Height="30"/>
+            <Button x:Name="Konwertuj" Content="Konwertuj" Grid.Row="2" Grid.Column="1" FontSize="14" HorizontalAlignment="Left"  Width="95" Margin="7.8,5.2,0,5.4" Click="Konwertuj_Click"/>
 
 
-            <!--<ComboBox x:Name="Parametry" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Width="180"/>-->
-            <!--<ComboBox x:Name="SposobKonwersji" SelectionChanged="ZmianaSposobuKonwersji" SelectedItem="Próbkowanie równomierne" Margin="149,307,102,383.8"/>-->
-            <!--<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Typ konwersji" VerticalAlignment="Center" Margin="0,315,428,383.8" Height="22" Width="73" RenderTransformOrigin="0.564,1.88"/>
-            <TextBlock x:Name="ParametryTekst"  HorizontalAlignment="Right" TextWrapping="Wrap" Text="Parametry" VerticalAlignment="Top" Margin="0,365,215,0" Height="21"/>-->
+            <Label Content="Metoda Rekonstrukcji" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="0,5.6,2.2,4.4" Width="125"/>
+            <ComboBox x:Name="MetodaRekonstrukcji" SelectedItem="Zero-order hold" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Width="227" Margin="7.8,5.6,-26.8,4.4"/>
+
+            <Button x:Name="Rekonstruuj" Content="Rekonstruuj" Grid.Row="5" Grid.Column="1" FontSize="14" HorizontalAlignment="Left"  Width="95" Margin="7.8,5.6,0,5.8" Click="Rekonstruuj_Click"/>
+
 
 
         </Grid>
@@ -57,11 +49,10 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="499.2" />
             </Grid.RowDefinitions>
 
-            <chartingToolkit:Chart x:Name="Baza" Grid.Row="0" Width="450" Height="200">
+            <chartingToolkit:Chart x:Name="Baza" Margin="0,28.2,9.6,173.8" Grid.Row="1">
                 <chartingToolkit:Chart.LegendStyle>
                     <Style TargetType="Control">
                         <Setter Property="Width" Value="0"/>
@@ -70,7 +61,7 @@
                 </chartingToolkit:Chart.LegendStyle>
             </chartingToolkit:Chart>
 
-            <chartingToolkit:Chart x:Name="PoKonwersji" Grid.Row="1" Width="450" Height="200" >
+            <chartingToolkit:Chart x:Name="PoKonwersji" Margin="-450,361.2,464.6,-159.2" Grid.Row="1" >
                 <chartingToolkit:Chart.LegendStyle>
                     <Style TargetType="Control">
                         <Setter Property="Width" Value="0"/>
@@ -80,7 +71,7 @@
             </chartingToolkit:Chart>
 
 
-            <chartingToolkit:Chart x:Name="PoRekonstrukcji" Grid.Row="2" Width="450" Height="200" >
+            <chartingToolkit:Chart x:Name="PoRekonstrukcji" Grid.Row="1" Margin="0,361.2,9.6,-159.2" >
                 <chartingToolkit:Chart.LegendStyle>
                     <Style TargetType="{x:Type Control}">
                         <Setter Property="Width" Value="0"/>
@@ -89,6 +80,9 @@
                 </chartingToolkit:Chart.LegendStyle>
             </chartingToolkit:Chart>
         </Grid>
+        <Label Content="Sygnał bazowy" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="172.6,0,0,0"/>
+        <Label Content="Sygnał zrekonstruowany" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="146.6,332,0,0"/>
+        <Label Content="Sygnał po konwersji" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="154,332,0,0"/>
 
 
     </Grid>

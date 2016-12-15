@@ -39,7 +39,7 @@
                     <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="TypySygnalowLabel" FontSize="12" Margin="5,5" Width="50" Height="25" HorizontalAlignment="Left">Sygnał:</Label>
-                <ComboBox x:Name="TypySygnalow" SelectionChanged="TypWybrany" Grid.Row="1" Margin="5,5" Height="25"/>
+                <ComboBox x:Name="TypySygnalow" SelectedItem="Sinusoidalny" SelectionChanged="TypWybrany" Grid.Row="1" Margin="5,5" Height="25"/>
             </Grid>
 
             <Grid Grid.Row="1">

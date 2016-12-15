@@ -36,11 +36,6 @@ namespace Sygnaly
         {
             InitializeComponent();
             AddItems();
-            Amplituda.IsEnabled = false;
-            CzasPoczatkowy.IsEnabled = false;
-            CzasTrwaniaSygnalu.IsEnabled = false;
-            OkresPodstwawowy.IsEnabled = false;
-            WspolczynnikWpelnienia.IsEnabled = false;
         }
 
         private void AddItems()
@@ -69,6 +64,14 @@ namespace Sygnaly
             Konwersja.Items.Add("Sygnał 1");
             Konwersja.Items.Add("Sygnał 2");
             Konwersja.Items.Add("Sygnał Wynikowy");
+            Amplituda.IsEnabled = true;
+            Amplituda.Text = "2";
+            CzasPoczatkowy.IsEnabled = true;
+            CzasPoczatkowy.Text = "0";
+            CzasTrwaniaSygnalu.IsEnabled = true;
+            CzasTrwaniaSygnalu.Text = "10";
+            OkresPodstwawowy.IsEnabled = true;
+            OkresPodstwawowy.Text = "2";
         }
         private void ZaladujSygnal(int nr)
         {
