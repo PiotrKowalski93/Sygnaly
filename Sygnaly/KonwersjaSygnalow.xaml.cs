@@ -370,60 +370,60 @@ namespace Sygnaly
 
         private void LiczStatystyki_Click(object sender, RoutedEventArgs e)
         {
-            //SygnalDyskretny przedRekonstrukcja = new SygnalDyskretny();
-            //przedRekonstrukcja.x = new List<System.Numerics.Complex>();
-            //przedRekonstrukcja.y = new List<System.Numerics.Complex>();
+            SygnalDyskretny przedRekonstrukcja = new SygnalDyskretny();
+            przedRekonstrukcja.x = new List<System.Numerics.Complex>();
+            przedRekonstrukcja.y = new List<System.Numerics.Complex>();
 
-            //SygnalDyskretny poRekonstrukcji = new SygnalDyskretny();
-            //poRekonstrukcji.x = new List<System.Numerics.Complex>();
-            //poRekonstrukcji.y = new List<System.Numerics.Complex>();
+            SygnalDyskretny poRekonstrukcji = new SygnalDyskretny();
+            poRekonstrukcji.x = new List<System.Numerics.Complex>();
+            poRekonstrukcji.y = new List<System.Numerics.Complex>();
 
-            //przedRekonstrukcja.A = A.A;
-            //poRekonstrukcji.A = zrekonstruowany.A;
+            przedRekonstrukcja.A = A.A;
+            poRekonstrukcji.A = zrekonstruowany.A;
 
-            //double maxX = A.x[0].Real;
-            //double minX = A.x[0].Real;
+            double maxX = A.x[0].Real;
+            double minX = A.x[0].Real;
 
-            //for (int i = 0; i < A.x.Count; i++)
-            //{
-            //    if (A.x[i].Real > maxX)
-            //    {
-            //        maxX = A.x[i].Real;
-            //    }
-            //    if (A.x[i].Real < minX)
-            //    {
-            //        minX = A.x[i].Real;
-            //    }
-            //}
+            for (int i = 0; i < A.x.Count; i++)
+            {
+                if (A.x[i].Real > maxX)
+                {
+                    maxX = A.x[i].Real;
+                }
+                if (A.x[i].Real < minX)
+                {
+                    minX = A.x[i].Real;
+                }
+            }
 
-            //A.d = maxX - minX;
+            A.d = maxX - minX;
 
             //double czestotliwosc = 50;
             //int ilePunktow = (int)(czestotliwosc * A.d);
-            //int coIle = (int)(A.n / ilePunktow);
-            
-            //for (int i = 0; i < A.n; i = i + coIle)
-            //{
-            //    przedRekonstrukcja.x.Add(A.x[i]);
-            //    przedRekonstrukcja.y.Add(A.y[i]);
+            int coIle = (int)(A.n / 400);
 
-            //    poRekonstrukcji.x.Add(zrekonstruowany.x[i]);
-            //    poRekonstrukcji.y.Add(zrekonstruowany.y[i]);
-            //}
+            for (int i = 0; i < A.n; i = i + coIle)
+            {
+                przedRekonstrukcja.x.Add(A.x[i]);
+                przedRekonstrukcja.y.Add(A.y[i]);
 
-            //przedRekonstrukcja.x.Add(A.x[A.x.Count - 1]);
-            //przedRekonstrukcja.y.Add(A.y[A.y.Count - 1]);
+                poRekonstrukcji.x.Add(zrekonstruowany.x[i]);
+                poRekonstrukcji.y.Add(zrekonstruowany.y[i]);
+            }
 
-            //poRekonstrukcji.x.Add(zrekonstruowany.x[zrekonstruowany.x.Count - 1]);
-            //poRekonstrukcji.y.Add(zrekonstruowany.y[zrekonstruowany.y.Count - 1]);
+            przedRekonstrukcja.x.Add(A.x[A.x.Count - 1]);
+            przedRekonstrukcja.y.Add(A.y[A.y.Count - 1]);
 
-            //przedRekonstrukcja.PodzielPrzezAmplitude();
-            //poRekonstrukcji.PodzielPrzezAmplitude();
+            poRekonstrukcji.x.Add(zrekonstruowany.x[zrekonstruowany.x.Count - 1]);
+            poRekonstrukcji.y.Add(zrekonstruowany.y[zrekonstruowany.y.Count - 1]);
 
-            //MSE.Text = SignalComparer.CalculateMSE(przedRekonstrukcja, poRekonstrukcji).ToString();
-            //SNR.Text = SignalComparer.CalculateSNR(przedRekonstrukcja, poRekonstrukcji).ToString();
-            //PSNR.Text = SignalComparer.CalculatePSNR(przedRekonstrukcja, poRekonstrukcji).ToString();
-            //MD.Text = SignalComparer.CalculateMD(przedRekonstrukcja, poRekonstrukcji).ToString();
+            przedRekonstrukcja.PodzielPrzezAmplitude();
+            poRekonstrukcji.PodzielPrzezAmplitude();
+
+            MSE.Text = SignalComparer.CalculateMSE(przedRekonstrukcja, poRekonstrukcji).ToString();
+            SNR.Text = SignalComparer.CalculateSNR(przedRekonstrukcja, poRekonstrukcji).ToString();
+            PSNR.Text = SignalComparer.CalculatePSNR(przedRekonstrukcja, poRekonstrukcji).ToString();
+            MD.Text = SignalComparer.CalculateMD(przedRekonstrukcja, poRekonstrukcji).ToString();
         }
     }
 }

@@ -22,7 +22,14 @@ namespace Sygnaly.StatyczneDane
                 result += (val1[i].Real - val2[i].Real) * (val1[i].Real - val2[i].Real);
             }
 
-            return result / val1.Count;
+            var toReturn = result / val1.Count;
+
+            if (Double.IsNaN(toReturn))
+            {
+                return 0;
+            }
+
+            return toReturn;
         }
 
         public static double CalculateSNR(SygnalDyskretny signal1, SygnalDyskretny signal2)
@@ -37,7 +44,15 @@ namespace Sygnaly.StatyczneDane
                 result += val1[i].Real * val2[i].Real;
             }
 
-            return 10 * Math.Log10(result / CalculateMSE(signal1, signal2));
+            var mse = CalculateMSE(signal1, signal2);
+            double toReturn = 10 * Math.Log10(result / mse);
+
+            if(Double.IsNaN(toReturn))
+            {
+                return 0;
+            }
+
+            return toReturn;
         }
 
         public static double CalculatePSNR(SygnalDyskretny signal1, SygnalDyskretny signal2)
@@ -55,7 +70,15 @@ namespace Sygnaly.StatyczneDane
                 }
             }
 
-            return 10 * Math.Log10(max / CalculateMSE(signal1, signal2));
+            double mse = CalculateMSE(signal1, signal2);
+            double result = 10 * Math.Log10(max / mse);
+
+            if (Double.IsNaN(result))
+            {
+                return 0;
+            }
+
+            return result;
         }
 
         public static double CalculateMD(SygnalDyskretny signal1, SygnalDyskretny signal2)
@@ -72,6 +95,11 @@ namespace Sygnaly.StatyczneDane
                 {
                     max = tmp;
                 }
+            }
+
+            if (Double.IsNaN(max))
+            {
+                return 0;
             }
 
             return max;
