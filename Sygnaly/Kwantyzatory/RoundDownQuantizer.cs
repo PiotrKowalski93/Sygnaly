@@ -29,6 +29,5 @@ namespace Sygnaly.Kwantyzatory
         double newReal = stepsTable[sign * interval];
         return new Complex(newReal * amplitude * sign, value.Imaginary);
     }
-
   }
 }

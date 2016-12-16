@@ -19,6 +19,7 @@ using Sygnaly.SygnalyDyskretne;
 using Sygnaly.StatyczneDane;
 using Sygnaly.Properties;
 using Sygnaly.Kwantyzatory;
+using Sygnaly.Konwertery;
 
 namespace Sygnaly
 {
@@ -155,14 +156,13 @@ namespace Sygnaly
 
             if (TypKonwersji.SelectedItem.ToString() == "Próbkowanie równomierne")
             {
-                Parametry.Items.Add("0,25");
-                Parametry.Items.Add("0,5");
                 Parametry.Items.Add("1");
                 Parametry.Items.Add("2");
                 Parametry.Items.Add("3");
                 Parametry.Items.Add("5");
                 Parametry.Items.Add("10");
                 Parametry.Items.Add("20");
+                Parametry.Items.Add("30");
                 ParametryTekst.Text = "Częstotliwość próbkowania";
             }
             else if (TypKonwersji.SelectedItem.ToString() == "Kwantyzacja równomierna z obcięciem")
@@ -228,7 +228,7 @@ namespace Sygnaly
                 }
 
                 przekonwertowany.x.Add(A.x[A.x.Count - 1]);
-                przekonwertowany.y.Add(A.y[A.y.Count - 1]);               
+                przekonwertowany.y.Add(A.y[A.y.Count - 1]);
             }
 
             if (TypKonwersji.SelectedItem.ToString() == "Kwantyzacja równomierna z obcięciem")
@@ -270,6 +270,11 @@ namespace Sygnaly
 
             mySeries.ItemsSource = punkty;
             PoKonwersji.Series.Add(mySeries);
+            przekonwertowany.d = A.d;
+            przekonwertowany.A = A.A;
+            przekonwertowany.T = A.T;
+            przekonwertowany.t1 = A.t1;
+            przekonwertowany.kw = A.kw;
         }
 
         private void Rekonstruuj_Click(object sender, RoutedEventArgs e)
@@ -283,28 +288,8 @@ namespace Sygnaly
 
             if (MetodaRekonstrukcji.SelectedItem.ToString() == "Zero-order hold")
             {
-                double maxX = przekonwertowany.x[0].Real;
-                double minX = przekonwertowany.x[0].Real;
-
-                for (int i = 0; i < przekonwertowany.x.Count; i++)
-                {
-                    if (przekonwertowany.x[i].Real > maxX)
-                    {
-                        maxX = przekonwertowany.x[i].Real;
-                    }
-                    if (przekonwertowany.x[i].Real < minX)
-                    {
-                        minX = przekonwertowany.x[i].Real;
-                    }
-                }
-                
-                przekonwertowany.d = maxX - minX;
-
-                przekonwertowany.t1 = minX;
-
-                int ileDodatkowych=(int)(400/przekonwertowany.d);
-                int probka = 0;
-                double roznica = (przekonwertowany.y[2].Real - przekonwertowany.y[1].Real) / (ileDodatkowych + 1);
+                int ileDodatkowych = (int)(400 / przekonwertowany.d);
+                double roznica = (przekonwertowany.x[2].Real - przekonwertowany.x[1].Real) / (ileDodatkowych + 1);
 
                 for (int i = 0; i < przekonwertowany.x.Count; i++)
                 {
@@ -313,59 +298,42 @@ namespace Sygnaly
 
                     for (int j = 0; j < ileDodatkowych; j++)
                     {
-                        if (i!= przekonwertowany.x.Count-1)
+                        if (i != przekonwertowany.x.Count - 1)
                         {
-                            if (przekonwertowany.x[i].Real + (j * roznica) < przekonwertowany.x[i + 1].Real)
-                            {
-                                zrekonstruowany.x.Add(przekonwertowany.x[i].Real + (j * roznica));
-                                zrekonstruowany.y.Add(przekonwertowany.y[i].Real);
-                            }
+                            zrekonstruowany.x.Add(przekonwertowany.x[i].Real + (j * roznica));
+                            zrekonstruowany.y.Add(przekonwertowany.y[i].Real);
                         }
 
                     }
                 }
-
-                LineSeries mySeries = new LineSeries();
-                mySeries.Title = "Zrekonstruowany";
-                mySeries.IndependentValueBinding = new Binding("Key");
-                mySeries.DependentValueBinding = new Binding("Value");
-                Style style = new Style(typeof(LineDataPoint));
-                style.Setters.Add(new Setter(LineDataPoint.TemplateProperty, null));
-                mySeries.DataPointStyle = style;
-                punkty = new List<KeyValuePair<double, double>>();
-                for (int i = 0; i < zrekonstruowany.x.Count; i++)
-                {
-                    punkty.Add(new KeyValuePair<double, double>(zrekonstruowany.x[i].Real, zrekonstruowany.y[i].Real));
-                }
-                mySeries.ItemsSource = punkty;
-                PoRekonstrukcji.Series.Add(mySeries);
             }
             else if (MetodaRekonstrukcji.SelectedItem.ToString() == "First-order hold")
             {
                 for (int i = 0; i < przekonwertowany.x.Count; i++)
                 {
-                        zrekonstruowany.x.Add(przekonwertowany.x[i].Real);
-                        zrekonstruowany.y.Add(przekonwertowany.y[i].Real);
+                    zrekonstruowany.x.Add(przekonwertowany.x[i].Real);
+                    zrekonstruowany.y.Add(przekonwertowany.y[i].Real);
                 }
-                LineSeries mySeries = new LineSeries();
-                mySeries.Title = "Zrekonstruowany";
-                mySeries.IndependentValueBinding = new Binding("Key");
-                mySeries.DependentValueBinding = new Binding("Value");
-                Style style = new Style(typeof(LineDataPoint));
-                style.Setters.Add(new Setter(LineDataPoint.TemplateProperty, null));
-                mySeries.DataPointStyle = style;
-                punkty = new List<KeyValuePair<double, double>>();
-                for (int i = 0; i < zrekonstruowany.x.Count; i++)
-                {
-                    punkty.Add(new KeyValuePair<double, double>(zrekonstruowany.x[i].Real, zrekonstruowany.y[i].Real));
-                }
-                mySeries.ItemsSource = punkty;
-                PoRekonstrukcji.Series.Add(mySeries);
             }
             else
             {
-
+                SINCConverter sincconverter = new SINCConverter();
+                zrekonstruowany = sincconverter.Konwert(przekonwertowany,(int)(A.n/A.d),int.Parse(Parametry.Text.ToString()));
             }
+            LineSeries mySeries = new LineSeries();
+            mySeries.Title = "Zrekonstruowany";
+            mySeries.IndependentValueBinding = new Binding("Key");
+            mySeries.DependentValueBinding = new Binding("Value");
+            Style style = new Style(typeof(LineDataPoint));
+            style.Setters.Add(new Setter(LineDataPoint.TemplateProperty, null));
+            mySeries.DataPointStyle = style;
+            punkty = new List<KeyValuePair<double, double>>();
+            for (int i = 0; i < zrekonstruowany.x.Count; i++)
+            {
+                punkty.Add(new KeyValuePair<double, double>(zrekonstruowany.x[i].Real, zrekonstruowany.y[i].Real));
+            }
+            mySeries.ItemsSource = punkty;
+            PoRekonstrukcji.Series.Add(mySeries);
         }
 
         private void LiczStatystyki_Click(object sender, RoutedEventArgs e)
@@ -402,7 +370,7 @@ namespace Sygnaly
             //int ilePunktow = (int)(czestotliwosc * A.d);
             int coIle = (int)(A.n / 400);
 
-            for (int i = 0; i < A.n; i = i + coIle)
+            for (int i = 0; i < zrekonstruowany.n; i = i + coIle)
             {
                 przedRekonstrukcja.x.Add(A.x[i]);
                 przedRekonstrukcja.y.Add(A.y[i]);

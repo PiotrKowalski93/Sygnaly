@@ -46,7 +46,7 @@
             <Button x:Name="Konwertuj" Content="Konwertuj" Grid.Row="2" Grid.Column="1" FontSize="14" HorizontalAlignment="Left" Margin="5,5" Width="95" Click="Konwertuj_Click"/>
 
             <Label Content="Metoda Rekonstrukcji" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Width="125" Margin="5,5"/>
-            <ComboBox x:Name="MetodaRekonstrukcji" SelectedItem="Zero-order hold" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Width="230" Margin="5,5"/>
+            <ComboBox x:Name="MetodaRekonstrukcji" SelectedItem="Sinus Cardinalis" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Width="230" Margin="5,5"/>
             
             <Button x:Name="Rekonstruuj" Content="Rekonstruuj" Grid.Row="5" Grid.Column="1" FontSize="14" Margin="5,5" HorizontalAlignment="Left"  Width="95" Click="Rekonstruuj_Click"/>
 

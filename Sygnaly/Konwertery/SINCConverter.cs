@@ -12,34 +12,75 @@ namespace Sygnaly.Konwertery
     {
 
     private Complex[] values;
-    private List<Complex> newValues;
+    private Complex[] newValues;
     private int originalSamplingRate;
     private int newSamplingRate;
+    Sygnal zrekonstruowany;
 
-    public SygnalDyskretny Convert(SygnalDyskretny input, int samplingRate)
+    public Sygnal Konwert(Sygnal input, int samplingRate, int originalSamplingRate)
     {
-            //int aLength = (int)(input.T * samplingRate);
+            values = new Complex[input.y.Count];
+            int aLength = (int)(input.d *samplingRate);
+            for (int i = 0; i < input.y.Count; i++)
+            {
+                values[i] = input.y[i];
+            }
+            newValues = new Complex[aLength];
 
-            //values = input.getValues();
+            this.originalSamplingRate = originalSamplingRate;
 
-            //newValues = new Complex[aLength];
+            newSamplingRate = samplingRate;
 
-            //originalSamplingRate = input.getSamplingRate();
+            for (int i = 0; i < newValues.Count(); i++)
+            {
+                newValues[i] = interpolate(30, i, i);
+            }
+            //int ileDodatkowych = (int)(400 / (originalSamplingRate*input.d))-originalSamplingRate;
+            //double roznica = (input.x[1].Real - input.x[0].Real) / (ileDodatkowych + 1);
+            zrekonstruowany = new Sygnal();
+            zrekonstruowany.x = new List<System.Numerics.Complex>();
+            zrekonstruowany.y = new List<System.Numerics.Complex>();
+            /*int j;
+            for (int i = 0; i < input.x.Count; i++)
+            {
+                j = 0;
+                zrekonstruowany.x.Add(input.x[i].Real);
+                zrekonstruowany.y.Add(newValues[i+j]);
 
-            //newSamplingRate = samplingRate;
+                if (i != input.x.Count)
+                {
+                    for (j = 1; j <= ileDodatkowych; j++)
+                    {
+                        if (i != input.x.Count)
+                        {
+                            
+                                zrekonstruowany.x.Add(input.x[i].Real + (j * roznica));
+                                zrekonstruowany.y.Add(newValues[i + j]);
+                            
+                        }
 
-            //for (int i = 0; i < newValues.Count(); i++)
-            //{
-            //    newValues[i] = interpolate(30, i, i);
-            //}
-            //return new SygnalDyskretny(newValues, samplingRate, input.getStartTime(), input.getAmplitude());
-
-            return null;
+                    }
+                }
+            }*/
+            double roznica = input.d/ newValues.Length;
+            double ix=0;
+            for (int i = 0; i < newValues.Length; i++)
+            {
+                zrekonstruowany.x.Add(ix);
+                zrekonstruowany.y.Add(newValues[i]);
+                ix += roznica;
+            }
+            zrekonstruowany.t1 = input.t1;
+            zrekonstruowany.A = input.A;
+            zrekonstruowany.d = input.d;
+            zrekonstruowany.n = newValues.Length;
+            //return new SygnalDyskretny(newValues, samplingRate, input.t1, input.A);
+            return zrekonstruowany;
     }
 
     public Complex interpolate(int window, int oldSample, int newSample)
     {
-        Complex ret = Complex.Zero;
+        double ret=0;
         int start = newSample - (window / 2);
 
         if (start <= 0)
@@ -49,9 +90,9 @@ namespace Sygnaly.Konwertery
 
         int end = newSample + (window / 2);
 
-        if (end >= newValues.Count)
+        if (end >= newValues.Count())
         {
-            end = newValues.Count;
+            end = newValues.Count();
         }
 
         for (int i = start; i < end; i++)
@@ -60,9 +101,9 @@ namespace Sygnaly.Konwertery
 
             double factor = SINC((newSample - i) * (1.0 * originalSamplingRate / newSamplingRate));
 
-            ret += new Complex(oldVal, 0) * new Complex(factor, 0);
+            ret += oldVal*factor;
         }
-        return ret;
+        return new Complex(ret * (1.0 * originalSamplingRate / newSamplingRate), 0);
     }
 
     public static double SINC(double n)
