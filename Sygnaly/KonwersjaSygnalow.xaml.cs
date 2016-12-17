@@ -309,10 +309,27 @@ namespace Sygnaly
             }
             else if (MetodaRekonstrukcji.SelectedItem.ToString() == "First-order hold")
             {
+                int ileDodatkowych = (int)(400 / przekonwertowany.d);
+                double roznica = (przekonwertowany.x[2].Real - przekonwertowany.x[1].Real) / (ileDodatkowych + 1);
+
                 for (int i = 0; i < przekonwertowany.x.Count; i++)
                 {
                     zrekonstruowany.x.Add(przekonwertowany.x[i].Real);
                     zrekonstruowany.y.Add(przekonwertowany.y[i].Real);
+                    if (i != przekonwertowany.x.Count - 1)
+                    {
+                        double roznicaY = (przekonwertowany.y[i + 1].Real - przekonwertowany.y[i].Real) / (ileDodatkowych + 1);
+
+                        for (int j = 0; j < ileDodatkowych; j++)
+                        {
+                            if (i != przekonwertowany.x.Count - 1)
+                            {
+                                zrekonstruowany.x.Add(przekonwertowany.x[i].Real + (j * roznica));
+                                zrekonstruowany.y.Add(przekonwertowany.y[i].Real + (j * roznicaY));
+                            }
+
+                        }
+                    }
                 }
             }
             else
@@ -370,7 +387,7 @@ namespace Sygnaly
             //int ilePunktow = (int)(czestotliwosc * A.d);
             int coIle = (int)(A.n / 400);
 
-            for (int i = 0; i < zrekonstruowany.n; i = i + coIle)
+            for (int i = 0; i < A.n; i = i + coIle)
             {
                 przedRekonstrukcja.x.Add(A.x[i]);
                 przedRekonstrukcja.y.Add(A.y[i]);

@@ -20,7 +20,7 @@ namespace Sygnaly.Konwertery
     public Sygnal Konwert(Sygnal input, int samplingRate, int originalSamplingRate)
     {
             values = new Complex[input.y.Count];
-            int aLength = (int)(input.d *samplingRate);
+            int aLength = 400;
             for (int i = 0; i < input.y.Count; i++)
             {
                 values[i] = input.y[i];
@@ -40,28 +40,7 @@ namespace Sygnaly.Konwertery
             zrekonstruowany = new Sygnal();
             zrekonstruowany.x = new List<System.Numerics.Complex>();
             zrekonstruowany.y = new List<System.Numerics.Complex>();
-            /*int j;
-            for (int i = 0; i < input.x.Count; i++)
-            {
-                j = 0;
-                zrekonstruowany.x.Add(input.x[i].Real);
-                zrekonstruowany.y.Add(newValues[i+j]);
 
-                if (i != input.x.Count)
-                {
-                    for (j = 1; j <= ileDodatkowych; j++)
-                    {
-                        if (i != input.x.Count)
-                        {
-                            
-                                zrekonstruowany.x.Add(input.x[i].Real + (j * roznica));
-                                zrekonstruowany.y.Add(newValues[i + j]);
-                            
-                        }
-
-                    }
-                }
-            }*/
             double roznica = input.d/ newValues.Length;
             double ix=0;
             for (int i = 0; i < newValues.Length; i++)
@@ -74,7 +53,7 @@ namespace Sygnaly.Konwertery
             zrekonstruowany.A = input.A;
             zrekonstruowany.d = input.d;
             zrekonstruowany.n = newValues.Length;
-            //return new SygnalDyskretny(newValues, samplingRate, input.t1, input.A);
+
             return zrekonstruowany;
     }
 
