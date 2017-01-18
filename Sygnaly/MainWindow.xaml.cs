@@ -5,6 +5,7 @@ using Sygnaly.SygnalyDyskretne;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -57,10 +58,10 @@ namespace Sygnaly
             TypyOperacji.Items.Add("Sygnał 1 * Sygnał 2");
             TypyOperacji.Items.Add("Sygnał 1 / Sygnał 2");
             TypyOperacji.Items.Add("Sygnał 2 / Sygnał 1");
-            IlePrzedzialow.Items.Add("5");
-            IlePrzedzialow.Items.Add("10");
-            IlePrzedzialow.Items.Add("15");
-            IlePrzedzialow.Items.Add("20");
+            //IlePrzedzialow.Items.Add("5");
+            //IlePrzedzialow.Items.Add("10");
+            //IlePrzedzialow.Items.Add("15");
+            //IlePrzedzialow.Items.Add("20");
             Konwersja.Items.Add("Sygnał 1");
             Konwersja.Items.Add("Sygnał 2");
             Konwersja.Items.Add("Sygnał Wynikowy");
@@ -216,14 +217,14 @@ namespace Sygnaly
 
                 Chart.Series.Add(mySeries);
             }
-            if (IlePrzedzialow.SelectedItem.ToString() == "5")
-                ile = 5;
-            else if (IlePrzedzialow.SelectedItem.ToString() == "10")
-                ile = 10;
-            else if (IlePrzedzialow.SelectedItem.ToString() == "15")
-                ile = 15;
-            else
-                ile = 20;
+            //if (IlePrzedzialow.SelectedItem.ToString() == "5")
+            //    ile = 5;
+            //else if (IlePrzedzialow.SelectedItem.ToString() == "10")
+            //    ile = 10;
+            //else if (IlePrzedzialow.SelectedItem.ToString() == "15")
+            //    ile = 15;
+            //else
+            //    ile = 20;
         }
         
         private void Sygnal1_Click(object sender, RoutedEventArgs e)
@@ -513,6 +514,59 @@ namespace Sygnaly
             }
             KonwersjaSygnalow win2 = new KonwersjaSygnalow();
             win2.Show();
+        }
+
+        private void PoliczSplot_Click(object sender, RoutedEventArgs e)
+        {
+            Sygnal splot = new Sygnal();
+            splot.x = new List<Complex>();
+            splot.y = new List<Complex>();
+
+            int M = a.x.Count;
+            int N = b.x.Count;
+            int dlugoscSplotu = M + N - 1;
+
+            int i1;
+
+            for (int i = 0; i < dlugoscSplotu; i++)
+            {         
+                Complex y = new Complex();
+                i1 = i;
+
+                for (int k = 0; k < N; k++)
+                {
+                    if(i1 >= 0 && i1 < M)
+                    {
+                        var h = a.y[i1];
+                        var x = b.y[k];
+
+                        y += h * x;
+                    }
+                    i1--;
+                        
+                }
+
+                splot.y.Add(y);                 
+            }
+
+            double odstep = 10 / double.Parse(dlugoscSplotu.ToString());
+
+            for (double i = 0; i < 10; i += odstep)
+            {
+                splot.x.Add(i);
+            }
+
+            LineSeries mySeries = new LineSeries();
+            mySeries.Title = "Splot";
+            mySeries.IndependentValueBinding = new Binding("Key");
+            mySeries.DependentValueBinding = new Binding("Value");
+            punkty = new List<KeyValuePair<double, double>>();
+            for (int i = 0; i < splot.x.Count; i++)
+            {
+                punkty.Add(new KeyValuePair<double, double>(splot.x[i].Real, splot.y[i].Real));
+            }
+            mySeries.ItemsSource = punkty;
+            ChartWynik.Series.Add(mySeries);
         }
     }
 }
