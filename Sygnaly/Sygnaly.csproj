@@ -92,6 +92,10 @@
     <Compile Include="Obliczenia.xaml.cs">
       <DependentUpon>Obliczenia.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Okna\Blackman.cs" />
+    <Compile Include="Okna\Hamming.cs" />
+    <Compile Include="Okna\Hanning.cs" />
+    <Compile Include="Okna\Okno.cs" />
     <Compile Include="Serializacja\Serializacja.cs" />
     <Compile Include="StatyczneDane\DaneStatyczne.cs" />
     <Compile Include="StatyczneDane\SignalComparer.cs" />
