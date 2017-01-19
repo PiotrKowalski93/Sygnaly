@@ -556,6 +556,7 @@ namespace Sygnaly
                 splot.x.Add(i);
             }
 
+            ChartWynik.Series.Clear();
             LineSeries mySeries = new LineSeries();
             mySeries.Title = "Splot";
             mySeries.IndependentValueBinding = new Binding("Key");
@@ -564,6 +565,58 @@ namespace Sygnaly
             for (int i = 0; i < splot.x.Count; i++)
             {
                 punkty.Add(new KeyValuePair<double, double>(splot.x[i].Real, splot.y[i].Real));
+            }
+            mySeries.ItemsSource = punkty;
+            ChartWynik.Series.Add(mySeries);
+        }
+        private void PoliczKorelacje_Click(object sender, RoutedEventArgs e)
+        {
+            Sygnal korelacja = new Sygnal();
+            korelacja.x = new List<Complex>();
+            korelacja.y = new List<Complex>();
+
+            int M = a.x.Count;
+            int N = b.x.Count;
+            int dlugoscSplotu = M + N - 1;
+
+            int i1;
+
+            for (int i = 0; i < dlugoscSplotu; i++)
+            {
+                Complex y = new Complex();
+                i1 = i;
+
+                for (int k = N-1; k >=0; k--)
+                {
+                    if (i1 >= 0 && i1 < M)
+                    {
+                        var h = a.y[i1];
+                        var x = b.y[k];
+
+                        y += h * x;
+                    }
+                    i1--;
+
+                }
+
+                korelacja.y.Add(y);
+            }
+
+            double odstep = 10 / double.Parse(dlugoscSplotu.ToString());
+
+            for (double i = 0; i < 10; i += odstep)
+            {
+                korelacja.x.Add(i);
+            }
+
+            LineSeries mySeries = new LineSeries();
+            mySeries.Title = "Korelacja";
+            mySeries.IndependentValueBinding = new Binding("Key");
+            mySeries.DependentValueBinding = new Binding("Value");
+            punkty = new List<KeyValuePair<double, double>>();
+            for (int i = 0; i < korelacja.x.Count; i++)
+            {
+                punkty.Add(new KeyValuePair<double, double>(korelacja.x[i].Real, korelacja.y[i].Real));
             }
             mySeries.ItemsSource = punkty;
             ChartWynik.Series.Add(mySeries);

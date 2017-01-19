@@ -139,7 +139,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="WczytajOperacje" Grid.Column="1" Margin="5,5" HorizontalAlignment="Right" Content="Policz" VerticalAlignment="Center" Width="70" Height="23" Click="Wczytaj_Click"/>
+                <Button x:Name="WczytajOperacje" Margin="0,5,5.4,5.6" HorizontalAlignment="Right" Content="Policz" VerticalAlignment="Center" Width="92" Height="23" Click="Wczytaj_Click"/>
             </Grid>
 
             <Grid Grid.Row="11">
@@ -150,7 +150,8 @@
                 <!--<Label x:Name="LiczbaPrzedzialow"  FontSize="12" Height="25" Margin="0,4.6,0,20.8" HorizontalAlignment="Left" Content="Liczba przedziałów histogramu:" Width="175" Grid.Row="11"/>
                 <ComboBox x:Name="IlePrzedzialow" SelectedValue="5" Margin="193,10,0.4,19.4"/>-->
 
-                <Button x:Name="PoliczSplot" Content="Splot" Margin="5,5" Height="40" Width="60" HorizontalAlignment="Right" Grid.Column="1" Click="PoliczSplot_Click" />
+                <Button x:Name="PoliczSplot" Content="Splot" Margin="0,0,110.4,25.4" Width="93" HorizontalAlignment="Right" Click="PoliczSplot_Click" Grid.ColumnSpan="2" />
+                <Button x:Name="PoliczKorelacje" Content="Korelacja" Margin="0,0,5.4,25.4" Width="93" HorizontalAlignment="Right" Grid.Column="1" Click="PoliczKorelacje_Click" />
 
             </Grid>
 
@@ -198,7 +199,7 @@
                 <Button x:Name="Obliczenia2" Grid.Row="1" Content="Szczegóły" Height="25" Width="89" Margin="112,6.2,113.4,4.8" HorizontalAlignment="Center" Click="Obliczenia2_Click"/>
                 <Button x:Name="Faza1" Grid.Row="0" Content="moduł i faza" Height="25" Width="89" Margin="215,5,10.4,6.8" HorizontalAlignment="Center" Click="Faza1_Click"/>
                 <Button x:Name="Faza2" Grid.Row="1" Content="moduł i faza" Height="25" Width="89" Margin="215,6.2,10.4,4.8" HorizontalAlignment="Center" Click="Faza2_Click"/>
-                
+
             </Grid>
 
             <Grid Grid.Row="16">
@@ -206,7 +207,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Button x:Name="KonwersjaSygnalow" Grid.Column="1" Content="Konwersja Sygnałów" Height="25" Width="192" Margin="5,5" HorizontalAlignment="Center" Click="KonwersjaSygnalow_Click"/>
                 <ComboBox x:Name="Konwersja" SelectedValue="Sygnał 1" Margin="5,5" Height="25" Grid.Column="0"/>
             </Grid>
