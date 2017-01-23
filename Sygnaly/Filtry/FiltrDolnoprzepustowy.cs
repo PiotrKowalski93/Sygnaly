@@ -11,7 +11,7 @@ namespace Sygnaly.Filtry
 {
     public class FiltrDolnoprzepustowy : Filtr
     {
-        public FiltrDolnoprzepustowy(Okno window, int order, double lowFrqCutoff, double highFrqCutoff, double samplingRate) : base(window, order, lowFrqCutoff, highFrqCutoff, samplingRate)
+        public FiltrDolnoprzepustowy(Okno window, int order, double lowFrqCutoff, double samplingRate) : base(window, order, lowFrqCutoff, 0, samplingRate)
         {
             double cutoff = lowFrqCutoff / samplingRate;
             filter = new Complex[order + 1];

@@ -11,8 +11,8 @@ namespace Sygnaly.Filtry
 {
     public class FiltrGornoprzepustowy : Filtr
     {
-        public FiltrGornoprzepustowy(Okno window, int order, double lowFrqCutoff, double highFrqCutoff, double samplingRate) 
-            : base(window, order, lowFrqCutoff, highFrqCutoff, samplingRate)
+        public FiltrGornoprzepustowy(Okno window, int order, double highFrqCutoff, double samplingRate) 
+            : base(window, order, 0, highFrqCutoff, samplingRate)
         {
             double cutoff = highFrqCutoff / samplingRate;
             filter = new Complex[order + 1];

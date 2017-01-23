@@ -87,3 +87,6 @@ D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Konwers
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\KonwersjaSygnalow.g.cs
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\KonwersjaSygnalow.baml
 C:\Users\KowalskiP\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.csprojResolveAssemblyReference.cache
+C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\bin\Debug\Sygnaly.exe.config
+C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.exe
+C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.pdb
