@@ -109,6 +109,7 @@
     <Compile Include="Sygaly\Sygnal.cs" />
     <Compile Include="Sygaly\SygnalCiagly.cs" />
     <Compile Include="Sygaly\SygnalDyskretny.cs" />
+    <Compile Include="Sygaly\SygnalPochodny.cs" />
     <Compile Include="SygnalyCiagle\SkokJednostkowy.cs" />
     <Compile Include="SygnalyCiagle\SygnalProstokatny.cs" />
     <Compile Include="SygnalyCiagle\SygnalProstokatnySymetryczny.cs" />

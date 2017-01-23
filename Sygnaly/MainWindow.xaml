@@ -212,6 +212,15 @@
                 <ComboBox x:Name="Konwersja" SelectedValue="Sygnał 1" Margin="5,5" Height="25" Grid.Column="0"/>
             </Grid>
 
+            <Grid Grid.Row="17">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="Filtry" Grid.Column="1" Content="Filtry" Height="25" Width="120" Margin="5,5" HorizontalAlignment="Center" Click="Filtry_Click"/>
+            </Grid>
+
         </Grid>
 
         <Grid Grid.Column="1">

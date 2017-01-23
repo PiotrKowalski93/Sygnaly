@@ -12,7 +12,7 @@ namespace Sygnaly.Okna
         public static double TWO_PI = (double)(2 * Math.PI);
         public int length;
 
-        public Complex[] apply(Complex[] filter)
+        public List<Complex> apply(List<Complex> filter)
         {
             this.length = filter.Count();
 
@@ -25,7 +25,7 @@ namespace Sygnaly.Okna
             return filter;
         }
 
-        public Complex[] apply(Complex[] filter, int offset, int length)
+        public List<Complex> apply(List<Complex> filter, int offset, int length)
         {
             this.length = length;
 
@@ -38,9 +38,9 @@ namespace Sygnaly.Okna
             return filter;
         }
 
-        public Complex[] generateCurve(int length)
+        public List<Complex> generateCurve(int length)
         {
-            Complex[] samples = new Complex[length];
+            List<Complex> samples = new List<Complex>();
             for (int n = 0; n < length; n++)
             {
                 samples[n] = new Complex(1d * value(length, n), 0);

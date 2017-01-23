@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Sygnaly.Sygaly
 {
     [Serializable]
-    class SygnalDyskretny : Sygnal
+    public class SygnalDyskretny : Sygnal
     {
         public void PodzielPrzezAmplitude()
         {

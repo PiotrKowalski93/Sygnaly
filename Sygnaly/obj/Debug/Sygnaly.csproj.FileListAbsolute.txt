@@ -25,3 +25,4 @@ C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.Properties.Resourc
 C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.csproj.GenerateResource.Cache
 C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.exe
 C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.pdb
+C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\Sygnaly.csprojResolveAssemblyReference.cache

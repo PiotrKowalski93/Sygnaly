@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Sygnaly.Sygaly
 {
     [Serializable]
-    class Sygnal
+    public class Sygnal
     {
         // Wartosci Opisujace sygnal
         public double A = 1;        // <-- Amplituda
@@ -31,7 +31,7 @@ namespace Sygnaly.Sygaly
         public Sygnal()
         {
             n = 400;
-            //x = new List<Complex>();
+            x = new List<Complex>();
             //y = new List<Complex>();
 
             //double j = 0;
@@ -52,6 +52,6 @@ namespace Sygnaly.Sygaly
         {
             this.y = y;
         }
-
+        
     }
 }

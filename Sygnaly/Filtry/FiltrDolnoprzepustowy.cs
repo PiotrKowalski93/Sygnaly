@@ -14,19 +14,23 @@ namespace Sygnaly.Filtry
         public FiltrDolnoprzepustowy(Okno window, int order, double lowFrqCutoff, double samplingRate) : base(window, order, lowFrqCutoff, 0, samplingRate)
         {
             double cutoff = lowFrqCutoff / samplingRate;
-            filter = new Complex[order + 1];
+
+            //filter = new Complex[order + 1];
+            filter = new List<Complex>();
+
             double factor = 2.0 * cutoff;
             int half = order >> 1;
-            for (int i = 0; i < filter.Count(); i++)
+            for (int i = 0; i < order + 1; i++)
             {
-                filter[i] = new Complex(factor * SINCConverter.SINC(factor * (i - half)), 0);
+                filter.Add(new Complex(factor * SINCConverter.SINC(factor * (i - half)), 0));
             }
+
             filter = window.apply(filter);
         }
 
-        public override Complex[] getFilter()
+        public override List<Complex> getFilter()
         {
-            return filter;
+            return filter.ToList();
         }
     }
 }

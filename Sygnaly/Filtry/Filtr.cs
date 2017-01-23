@@ -11,7 +11,7 @@ namespace Sygnaly.Filtry
     public abstract class Filtr
     {
         protected Okno window;
-        protected Complex[] filter = null;
+        protected List<Complex> filter = null;
         protected int order;
         protected double lowFrqCutoff;
         protected double highFrqCutoff;
@@ -26,6 +26,6 @@ namespace Sygnaly.Filtry
             this.samplingRate = samplingRate;
         }
 
-        public abstract Complex[] getFilter();
+        public abstract List<Complex> getFilter();
     }
 }

@@ -621,5 +621,24 @@ namespace Sygnaly
             mySeries.ItemsSource = punkty;
             ChartWynik.Series.Add(mySeries);
         }
+
+        private void Filtry_Click(object sender, RoutedEventArgs e)
+        {
+            if (Konwersja.SelectedItem.ToString() == "Sygnał 1")
+            {
+                StatyczneDane.DaneStatyczne.dane = a;
+            }
+            else if (Konwersja.SelectedItem.ToString() == "Sygnał 2")
+            {
+                StatyczneDane.DaneStatyczne.dane = b;
+            }
+            else
+            {
+                StatyczneDane.DaneStatyczne.dane = c;
+            }
+
+            FiltryIOkna win2 = new FiltryIOkna();
+            win2.Show();
+        }
     }
 }

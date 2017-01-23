@@ -15,19 +15,22 @@ namespace Sygnaly.Filtry
             : base(window, order, 0, highFrqCutoff, samplingRate)
         {
             double cutoff = highFrqCutoff / samplingRate;
-            filter = new Complex[order + 1];
+
+            //filter = new Complex[order + 1];
+            filter = new List<Complex>();
+
             double factor = 2.0 * cutoff;
             int half = order >> 1;
-            for (int i = 0; i < filter.Count(); i++)
+            for (int i = 0; i < order + 1; i++)
             {
-                filter[i] = new Complex((i == half ? 1.0 : 0.0) - factor * SINCConverter.SINC(factor * (i - half)), 0);
+                filter.Add(new Complex((i == half ? 1.0 : 0.0) - factor * SINCConverter.SINC(factor * (i - half)), 0));
             }
             filter = window.apply(filter);
         }
 
-        public override Complex[] getFilter()
+        public override List<Complex> getFilter()
         {
-            return filter;
+            return filter.ToList();
         }
     }
 }

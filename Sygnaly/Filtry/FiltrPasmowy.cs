@@ -14,25 +14,29 @@ namespace Sygnaly.Filtry
         {
             filter = createBandstop();
             int half = order >> 1;
-            for (int i = 0; i < filter.Count(); i++) {
+
+            for (int i = 0; i < filter.Count(); i++)
+            {
                 filter[i] = new Complex(((i == half ? 1.0 : 0.0) - filter[i].Real), 0);
             }
         }
 
-        public Complex[] createBandstop()
+        public List<Complex> createBandstop()
         {
-            Complex[] low = new FiltrDolnoprzepustowy(window, order, lowFrqCutoff, samplingRate).getFilter();
-            Complex[] high = new FiltrGornoprzepustowy(window, order, highFrqCutoff, samplingRate).getFilter();
+            List<Complex> low = new FiltrDolnoprzepustowy(window, order, lowFrqCutoff, samplingRate).getFilter();
+            List<Complex> high = new FiltrGornoprzepustowy(window, order, highFrqCutoff, samplingRate).getFilter();
+
             for (int i = 0; i < low.Count(); i++)
             {
                 low[i] = new Complex(low[i].Real + high[i].Real, 0);
             }
+
             return low;
         }
 
-        public override Complex[] getFilter()
+        public override List<Complex> getFilter()
         {
-            return filter;
+            return filter.ToList();
         }
     }
 }

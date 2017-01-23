@@ -132,6 +132,7 @@ namespace Sygnaly
 
             Baza.Series.Add(mySeries);
         }
+
         private void wyswietlDyskretny(Sygnal B)
         {
             ScatterSeries mySeries = new ScatterSeries();
