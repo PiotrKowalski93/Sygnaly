@@ -80,6 +80,9 @@
     <Compile Include="Faza.xaml.cs">
       <DependentUpon>Faza.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FiltryIOkna.xaml.cs">
+      <DependentUpon>FiltryIOkna.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Filtry\Filtr.cs" />
     <Compile Include="Filtry\FiltrDolnoprzepustowy.cs" />
     <Compile Include="Filtry\FiltrGornoprzepustowy.cs" />
@@ -118,6 +121,10 @@
     <Compile Include="SygnalyDyskretne\ImpulsJednostkowy.cs" />
     <Compile Include="SygnalyDyskretne\SzumImpulsowy.cs" />
     <Page Include="Faza.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FiltryIOkna.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
