@@ -56,3 +56,5 @@ D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly
 D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\Sygnaly.csproj.GenerateResource.Cache
 D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\SymulatorCzujnikaOdleglosci.g.cs
 D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\SymulatorCzujnikaOdleglosci.baml
+C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\SymulatorCzujnikaOdleglosci.g.cs
+C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\SymulatorCzujnikaOdleglosci.baml

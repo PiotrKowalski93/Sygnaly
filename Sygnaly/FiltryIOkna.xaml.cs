@@ -7,6 +7,7 @@ using Sygnaly.SygnalyDyskretne;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +28,7 @@ namespace Sygnaly
     public partial class FiltryIOkna : Window
     {
         Sygnal A;
+        SygnalPochodny sp;
         public List<KeyValuePair<double, double>> punkty;
 
         public FiltryIOkna()
@@ -189,7 +191,7 @@ namespace Sygnaly
                 f = new FiltrPasmowy(o, rzad, czestotliwoscNiskie, czestotliwoscWysokie, czestotliwosc);
             }
 
-            SygnalPochodny sp = new SygnalPochodny(f.getFilter(), rzad, 0, 1);
+            sp = new SygnalPochodny(f.getFilter(), rzad, 0, 1);
 
             double odstep = 10 / double.Parse(rzad.ToString());
 
@@ -213,6 +215,63 @@ namespace Sygnaly
             mySeries.ItemsSource = p;
             Baza.Series.Add(mySeries);
 
+        }
+
+        private void GenerujSygnalWynikowy_Click(object sender, RoutedEventArgs e)
+        {
+            Sygnal splot = new Sygnal();
+            splot.x = new List<Complex>();
+            splot.y = new List<Complex>();
+
+            int M = A.x.Count;
+            int N = sp.x.Count;
+            int dlugoscSplotu = M + N - 1;
+
+            int i1;
+
+            for (int i = 0; i < dlugoscSplotu; i++)
+            {
+                Complex y = new Complex();
+                i1 = i;
+
+                for (int k = 0; k < N; k++)
+                {
+                    if (i1 >= 0 && i1 < M)
+                    {
+                        var h = A.y[i1];
+                        var x = sp.y[k];
+
+                        y += h * x;
+                    }
+                    i1--;
+
+                }
+
+                splot.y.Add(y);
+            }
+
+            double odstep = 10 / double.Parse(dlugoscSplotu.ToString());
+
+            for (double i = 0; i < 10; i += odstep)
+            {
+                splot.x.Add(i);
+            }
+
+            Wynik.Series.Clear();
+            LineSeries mySeries = new LineSeries();
+            mySeries.Title = "Splot";
+            mySeries.IndependentValueBinding = new Binding("Key");
+            mySeries.DependentValueBinding = new Binding("Value");
+
+            punkty = new List<KeyValuePair<double, double>>();
+
+            for (int i = 0; i < splot.x.Count; i++)
+            {
+                punkty.Add(new KeyValuePair<double, double>(splot.x[i].Real, splot.y[i].Real));
+            }
+
+            mySeries.ItemsSource = punkty;
+            Wynik.Series.Add(mySeries);
         }
     }
 }

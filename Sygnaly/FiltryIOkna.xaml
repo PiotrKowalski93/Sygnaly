@@ -59,6 +59,8 @@
 
             <Button x:Name="GenerujFiltr" Content="Generuj Filtr" Grid.Row="6" Grid.Column="1" FontSize="14" HorizontalAlignment="Left" Margin="5,5" Width="95" Click="GenerujFiltr_Click"/>
 
+            <Button x:Name="GenerujSygnalWynikowy" Content="Generuj Sygnal Wynikowy" Grid.Row="8" Grid.Column="1" FontSize="14" HorizontalAlignment="Left" 
+                    Margin="5,5" Width="175" Height="30" Click="GenerujSygnalWynikowy_Click" />
 
             <!--<Label x:Name="TypySygnalowLabel" Grid.Row="8" Grid.Column="0" Content="Sygnał" FontSize="12" Margin="5,5" Width="50" Height="25" HorizontalAlignment="Right"/>
             <ComboBox x:Name="TypySygnalow" Grid.Row="8" Grid.Column="1" SelectedItem="Sinusoidalny" SelectionChanged="TypWybrany" Margin="5,5" Height="25"/>
@@ -124,7 +126,7 @@
             </Grid.RowDefinitions>
 
             <Label Content="Sygnał wynikowy" Grid.Row="0" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <chartingToolkit:Chart x:Name="PoKonwersji" Grid.Row="1" Height="280">
+            <chartingToolkit:Chart x:Name="Wynik" Grid.Row="1" Height="280">
                 <chartingToolkit:Chart.LegendStyle>
                     <Style TargetType="Control">
                         <Setter Property="Width" Value="0"/>
