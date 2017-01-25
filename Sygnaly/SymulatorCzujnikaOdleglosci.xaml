@@ -25,11 +25,23 @@
         <Label Content="Rzeczywista prędkość obiektu:" HorizontalAlignment="Left" Height="28" Margin="44,25,0,0" VerticalAlignment="Top" Width="177"/>
         <Label Content="Prędkość rozchodzenia się sygnału:" HorizontalAlignment="Left" Height="28" Margin="44,75,0,0" VerticalAlignment="Top" Width="207"/>
         <TextBox x:Name="rzeczywistaOdleglosc" HorizontalAlignment="Left" Height="28" Margin="225,237,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="rzeczywistaPredkosc" HorizontalAlignment="Left" Height="28" Margin="226,25,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="predkoscRozchodzenia" HorizontalAlignment="Left" Height="28" Margin="251,75,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="80"/>
-        <Button x:Name="Start" Content="START" HorizontalAlignment="Left" Height="48" Margin="207,131,0,0" VerticalAlignment="Top" Width="124" Click="Start_Click"/>
-        <Button x:Name="Stop" Content="STOP" HorizontalAlignment="Left" Height="48" Margin="44,131,0,0" VerticalAlignment="Top" Width="124" Click="Stop_Click"/>
+        <TextBox x:Name="rzeczywistaPredkosc" HorizontalAlignment="Left" Height="28" Margin="226,25,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="predkoscRozchodzenia" HorizontalAlignment="Left" Height="28" Margin="251,75,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="80"/>
+        <Button x:Name="Start" Content="START" HorizontalAlignment="Left" Height="26" Margin="207,153,0,0" VerticalAlignment="Top" Width="124" Click="Start_Click"/>
+        <Button x:Name="Stop" Content="STOP" HorizontalAlignment="Left" Height="26" Margin="44,153,0,0" VerticalAlignment="Top" Width="124" Click="Stop_Click"/>
         <Button x:Name="ZmianaKierunku" Content="Zmień kierunek" HorizontalAlignment="Left" Height="30" Margin="127,184,0,0" VerticalAlignment="Top" Width="124" Click="ZmianaKierunku_Click"/>
+        <Label Content="Częstotliwość raportów (ms):" HorizontalAlignment="Left" Height="28" Margin="44,120,0,0" VerticalAlignment="Top" Width="176"/>
+        <TextBox x:Name="czestotliwosc" HorizontalAlignment="Left" Height="28" Margin="225,120,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="Czas" HorizontalAlignment="Left" Height="28" Margin="226,276,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="odlegloscSymulator" HorizontalAlignment="Left" Height="28" Margin="225,326,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
+        <chartingToolkit:Chart x:Name="Przesuniety" Height="280" Margin="0.2,290,578.6,70" Grid.Column="1">
+            <chartingToolkit:Chart.LegendStyle>
+                <Style TargetType="{x:Type Control}">
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </Style>
+            </chartingToolkit:Chart.LegendStyle>
+        </chartingToolkit:Chart>
 
     </Grid>
 </Window>
