@@ -121,6 +121,9 @@
     <Compile Include="SygnalyCiagle\SzumRozkladJednostajny.cs" />
     <Compile Include="SygnalyDyskretne\ImpulsJednostkowy.cs" />
     <Compile Include="SygnalyDyskretne\SzumImpulsowy.cs" />
+    <Compile Include="SymulatorCzujnikaOdleglosci.xaml.cs">
+      <DependentUpon>SymulatorCzujnikaOdleglosci.xaml</DependentUpon>
+    </Compile>
     <Page Include="Faza.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +149,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Obliczenia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SymulatorCzujnikaOdleglosci.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

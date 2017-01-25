@@ -65,6 +65,9 @@ namespace Sygnaly
             Konwersja.Items.Add("Sygnał 1");
             Konwersja.Items.Add("Sygnał 2");
             Konwersja.Items.Add("Sygnał Wynikowy");
+            Symulacja.Items.Add("Sygnał 1");
+            Symulacja.Items.Add("Sygnał 2");
+            Symulacja.Items.Add("Wynikowy");
             Amplituda.IsEnabled = true;
             Amplituda.Text = "2";
             CzasPoczatkowy.IsEnabled = true;
@@ -504,7 +507,7 @@ namespace Sygnaly
             { 
             StatyczneDane.DaneStatyczne.dane = a;
             }
-            else if (Konwersja.SelectedItem.ToString() == "Sygnał 1")
+            else if (Konwersja.SelectedItem.ToString() == "Sygnał 2")
             {
                 StatyczneDane.DaneStatyczne.dane = b;
             }
@@ -638,6 +641,23 @@ namespace Sygnaly
             }
 
             FiltryIOkna win2 = new FiltryIOkna();
+            win2.Show();
+        }
+        private void Symulator_Click(object sender, RoutedEventArgs e)
+        {
+            if (Symulacja.SelectedItem.ToString() == "Sygnał 1")
+            {
+                StatyczneDane.DaneStatyczne.dane = a;
+            }
+            else if (Symulacja.SelectedItem.ToString() == "Sygnał 2")
+            {
+                StatyczneDane.DaneStatyczne.dane = b;
+            }
+            else
+            {
+                StatyczneDane.DaneStatyczne.dane = c;
+            }
+            SymulatorCzujnikaOdleglosci win2 = new SymulatorCzujnikaOdleglosci();
             win2.Show();
         }
     }
