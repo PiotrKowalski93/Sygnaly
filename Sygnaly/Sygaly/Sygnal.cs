@@ -30,7 +30,7 @@ namespace Sygnaly.Sygaly
 
         public Sygnal()
         {
-            n = 400;
+            n = 6;
             //x = new List<Complex>();
             //y = new List<Complex>();
 

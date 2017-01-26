@@ -166,7 +166,7 @@ namespace Sygnaly
             int N = przesuniety.x.Count;
             int dlugoscSplotu = M + N - 1;
 
-            double odstep = 20 / (double)(dlugoscSplotu);
+            double odstep = 20 / (double)(dlugoscSplotu-1);
             int p = 0;
             //korelacja.y.Add(0);
             for (double i = 0; i < 20; i += odstep)
@@ -184,7 +184,6 @@ namespace Sygnaly
 
                         y += h * x;
                     }
-                    else y += 0;
                 }
                 
                 korelacja.y.Add(y);
