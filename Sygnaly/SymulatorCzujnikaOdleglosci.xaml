@@ -6,42 +6,30 @@
         xmlns:local="clr-namespace:Sygnaly"
         xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" x:Class="Sygnaly.SymulatorCzujnikaOdleglosci"
         mc:Ignorable="d"
-        Title="Symulator Czujnika Odległości" Height="669.932" Width="1400">
+        Title="Symulator Czujnika Odległości" Height="669.932" Width="1172">
     <Grid Background="#FFB8B6B6" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="11*"/>
             <ColumnDefinition Width="31*"/>
         </Grid.ColumnDefinitions>
 
-        <chartingToolkit:Chart x:Name="Baza" Height="280" Margin="0.2,10,578.6,350" Grid.Column="1">
-            <chartingToolkit:Chart.LegendStyle>
-                <Style TargetType="{x:Type Control}">
-                    <Setter Property="Width" Value="0"/>
-                    <Setter Property="Height" Value="0"/>
-                </Style>
-            </chartingToolkit:Chart.LegendStyle>
-        </chartingToolkit:Chart>
-        <Label Content="Rzeczywista odległość obiektu:" HorizontalAlignment="Left" Height="29" Margin="44,233,0,0" VerticalAlignment="Top" Width="176"/>
-        <Label Content="Rzeczywista prędkość obiektu:" HorizontalAlignment="Left" Height="28" Margin="44,25,0,0" VerticalAlignment="Top" Width="177"/>
+        <chartingToolkit:Chart x:Name="Baza" Margin="25.4,0,-0.4,331" Grid.Column="1"/>
+        <Label Content="Rzeczywista odległość obiektu:" HorizontalAlignment="Left" Height="29" Margin="55,309,0,0" VerticalAlignment="Top" Width="176"/>
+        <Label Content="Rzeczywista prędkość obiektu:" HorizontalAlignment="Left" Height="28" Margin="69,25,0,0" VerticalAlignment="Top" Width="177"/>
         <Label Content="Prędkość rozchodzenia się sygnału:" HorizontalAlignment="Left" Height="28" Margin="44,75,0,0" VerticalAlignment="Top" Width="207"/>
-        <TextBox x:Name="rzeczywistaOdleglosc" HorizontalAlignment="Left" Height="28" Margin="225,237,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="rzeczywistaPredkosc" HorizontalAlignment="Left" Height="28" Margin="226,25,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="rzeczywistaOdleglosc" HorizontalAlignment="Left" Height="28" Margin="251,309,0,0" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="rzeczywistaPredkosc" HorizontalAlignment="Left" Height="28" Margin="251,25,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" Width="80"/>
         <TextBox x:Name="predkoscRozchodzenia" HorizontalAlignment="Left" Height="28" Margin="251,75,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="80"/>
-        <Button x:Name="Start" Content="START" HorizontalAlignment="Left" Height="26" Margin="207,153,0,0" VerticalAlignment="Top" Width="124" Click="Start_Click"/>
-        <Button x:Name="Stop" Content="STOP" HorizontalAlignment="Left" Height="26" Margin="44,153,0,0" VerticalAlignment="Top" Width="124" Click="Stop_Click"/>
-        <Button x:Name="ZmianaKierunku" Content="Zmień kierunek" HorizontalAlignment="Left" Height="30" Margin="127,184,0,0" VerticalAlignment="Top" Width="124" Click="ZmianaKierunku_Click"/>
-        <Label Content="Częstotliwość raportów (ms):" HorizontalAlignment="Left" Height="28" Margin="44,120,0,0" VerticalAlignment="Top" Width="176"/>
-        <TextBox x:Name="czestotliwosc" HorizontalAlignment="Left" Height="28" Margin="225,120,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="Czas" HorizontalAlignment="Left" Height="28" Margin="226,276,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="odlegloscSymulator" HorizontalAlignment="Left" Height="28" Margin="225,326,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
-        <chartingToolkit:Chart x:Name="Przesuniety" Height="280" Margin="0.2,290,578.6,70" Grid.Column="1">
-            <chartingToolkit:Chart.LegendStyle>
-                <Style TargetType="{x:Type Control}">
-                    <Setter Property="Width" Value="0"/>
-                    <Setter Property="Height" Value="0"/>
-                </Style>
-            </chartingToolkit:Chart.LegendStyle>
-        </chartingToolkit:Chart>
+        <Button x:Name="Start" Content="START" HorizontalAlignment="Left" Height="38" Margin="182,170,0,0" VerticalAlignment="Top" Width="124" Click="Start_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="Stop" Content="STOP" HorizontalAlignment="Left" Height="38" Margin="24,170,0,0" VerticalAlignment="Top" Width="124" Click="Stop_Click"/>
+        <Button x:Name="ZmianaKierunku" Content="Zmień kierunek" HorizontalAlignment="Left" Height="30" Margin="127,225,0,0" VerticalAlignment="Top" Width="124" Click="ZmianaKierunku_Click"/>
+        <Label Content="Częstotliwość raportów (ms):" HorizontalAlignment="Left" Height="28" Margin="75,124,0,0" VerticalAlignment="Top" Width="176"/>
+        <TextBox x:Name="czestotliwosc" HorizontalAlignment="Left" Height="28" Margin="251,124,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="Czas" HorizontalAlignment="Left" Height="28" Margin="251,356,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="odlegloscSymulator" HorizontalAlignment="Left" Height="28" Margin="251,405,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
+        <chartingToolkit:Chart x:Name="Wynik" Margin="25.4,309,-0.4,0" Grid.Column="1"/>
+        <Label Content="Odległość obliczona przez czujnik:" HorizontalAlignment="Left" Height="29" Margin="38,404,0,0" VerticalAlignment="Top" Width="192"/>
+        <Label Content="Czas pokonywania drogi przez sygnał:" HorizontalAlignment="Left" Height="29" Margin="24,355,0,0" VerticalAlignment="Top" Width="209"/>
 
     </Grid>
 </Window>

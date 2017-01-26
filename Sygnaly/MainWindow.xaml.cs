@@ -574,6 +574,7 @@ namespace Sygnaly
         }
         private void PoliczKorelacje_Click(object sender, RoutedEventArgs e)
         {
+            ChartWynik.Series.Clear();
             Sygnal korelacja = new Sygnal();
             korelacja.x = new List<Complex>();
             korelacja.y = new List<Complex>();
@@ -582,34 +583,28 @@ namespace Sygnaly
             int N = b.x.Count;
             int dlugoscSplotu = M + N - 1;
 
-            int i1;
-
-            for (int i = 0; i < dlugoscSplotu; i++)
+            double odstep = 20 / (double)(dlugoscSplotu);
+            int p = 0;
+            //korelacja.y.Add(0);
+            for (double i = 0; i < 20; i += odstep)
             {
-                Complex y = new Complex();
-                i1 = i;
+                korelacja.x.Add(i);
+                double y = 0;
+                int n = p-(N-1);
 
-                for (int k = N-1; k >=0; k--)
+                for (int k = 0; k < M; k++)
                 {
-                    if (i1 >= 0 && i1 < M)
+                    if (k - n >= 0 && k - n < N)
                     {
-                        var h = a.y[i1];
-                        var x = b.y[k];
+                        double h = a.y[k].Real;
+                        double x = b.y[k - n].Real;
 
                         y += h * x;
                     }
-                    i1--;
-
+                    else y += 0;
                 }
-
                 korelacja.y.Add(y);
-            }
-
-            double odstep = 10 / double.Parse(dlugoscSplotu.ToString());
-
-            for (double i = 0; i < 10; i += odstep)
-            {
-                korelacja.x.Add(i);
+                p++;
             }
 
             LineSeries mySeries = new LineSeries();

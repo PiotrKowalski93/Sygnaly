@@ -31,7 +31,7 @@ namespace Sygnaly.Sygaly
         public Sygnal()
         {
             n = 400;
-            x = new List<Complex>();
+            //x = new List<Complex>();
             //y = new List<Complex>();
 
             //double j = 0;
