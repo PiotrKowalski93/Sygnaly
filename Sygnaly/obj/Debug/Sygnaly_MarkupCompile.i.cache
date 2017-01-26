@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\obj\Debug\
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\obj\Debug\
 Sygnaly
 none
 false
 DEBUG;TRACE
-C:\Users\Kowal\Source\Repos\Sygnaly\Sygnaly\App.xaml
+D:\7 semestr\Cyfrowe przesyłanie sygnału\RepoSygnaly\Sygnaly\App.xaml
 6-705137067
 
-46701580031
-2053572648
+46-454842797
+20-1645087894
 Faza.xaml;FiltryIOkna.xaml;KonwersjaSygnalow.xaml;MainWindow.xaml;Obliczenia.xaml;SymulatorCzujnikaOdleglosci.xaml;
 
-False
+True
 

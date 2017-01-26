@@ -26,13 +26,16 @@ namespace Sygnaly
 {
     public partial class SymulatorCzujnikaOdleglosci : Window
     {
+
         public List<KeyValuePair<double, double>> punkty;
+        public List<KeyValuePair<double, double>> punkty2;
         Sygnal A;
         int odleglosc;
         int predkoscObiektu;
         int predkoscOsrodka;
         bool nadal=true;
         bool kierunek = true;
+        int u = 0;
         public SymulatorCzujnikaOdleglosci()
         {
             InitializeComponent();
@@ -51,14 +54,14 @@ namespace Sygnaly
             style.Setters.Add(new Setter(LineDataPoint.BackgroundProperty, new SolidColorBrush(Colors.Red)));
             mySeries.DataPointStyle = style;
 
-            punkty = new List<KeyValuePair<double, double>>();
+            punkty2 = new List<KeyValuePair<double, double>>();
 
             for (int i = 0; i < A.x.Count; i++)
             {
-                punkty.Add(new KeyValuePair<double, double>(A.x[i].Real, A.y[i].Real));
+                punkty2.Add(new KeyValuePair<double, double>(A.x[i].Real, A.y[i].Real));
             }
 
-            mySeries.ItemsSource = punkty;
+            mySeries.ItemsSource = punkty2;
 
             Baza.Series.Add(mySeries);
         }
@@ -125,14 +128,31 @@ namespace Sygnaly
 
             Sygnal przesuniety = new Sygnal();
             przesuniety.x = new List<System.Numerics.Complex>();
+            przesuniety.x.Clear();
             przesuniety.y = new List<System.Numerics.Complex>();
+            przesuniety.y.Clear();
             for (int i = 0; i < A.x.Count; i++)
             {
-                if (A.x[i].Real- (czas / 1000.0) <= 0) przesuniety.x.Add(A.x[i] + 10 - (czas / 1000.0));
-                else przesuniety.x.Add(A.x[i]-(double)(czas/1000.0));
-                przesuniety.y.Add(A.y[i]);
+                if (A.x[i].Real - (czas / 1000.0) > 0)
+                {
+                    przesuniety.x.Add(A.x[i] - (double)(czas / 1000.0));
+                    przesuniety.y.Add(A.y[i]);
+                }
             }
+            for (int i = 0; i < A.x.Count; i++)
+            {
+                if (A.x[i].Real - (czas / 1000.0) <= 0)
+                {
+                    przesuniety.x.Add(A.x[i] + 10 - (czas / 1000.0));
+                    przesuniety.y.Add(A.y[i]);
+                }
+            }
+            
+            for (int i = 0; i < A.x.Count; i++)
+            {
 
+                double z = przesuniety.y[i].Real;
+            }
             LineSeries mySeries = new LineSeries();
             mySeries.Title = "Odebrany";
             mySeries.IndependentValueBinding = new Binding("Key");
@@ -154,6 +174,7 @@ namespace Sygnaly
 
             Baza.Series.Add(mySeries);
             PoliczKorelacje(przesuniety);
+            
         }
         private void PoliczKorelacje(Sygnal przesuniety)
         {
@@ -166,7 +187,7 @@ namespace Sygnaly
             int N = przesuniety.x.Count;
             int dlugoscSplotu = M + N - 1;
 
-            double odstep = 20 / (double)(dlugoscSplotu-1);
+            double odstep = 20 / (double)(dlugoscSplotu - 1);
             int p = 0;
             //korelacja.y.Add(0);
             for (double i = 0; i < 20; i += odstep)
@@ -185,29 +206,30 @@ namespace Sygnaly
                         y += h * x;
                     }
                 }
-                
+                //if( u > 1) y = 100;
                 korelacja.y.Add(y);
                 p++;
             }
+            u++;
 
-            LineSeries mySeries = new LineSeries();
-            mySeries.Title = "Korelacja";
-            mySeries.IndependentValueBinding = new Binding("Key");
-            mySeries.DependentValueBinding = new Binding("Value");
-            punkty = new List<KeyValuePair<double, double>>();
-            Style style = new Style(typeof(LineDataPoint));
-            style.Setters.Add(new Setter(LineDataPoint.TemplateProperty, null));
-            style.Setters.Add(new Setter(LineDataPoint.BackgroundProperty, new SolidColorBrush(Colors.Blue)));
-            mySeries.DataPointStyle = style;
+            LineSeries mySeries2 = new LineSeries();
+            mySeries2.Title = "Korelacja";
+            mySeries2.IndependentValueBinding = new Binding("Key");
+            mySeries2.DependentValueBinding = new Binding("Value");
+            punkty2 = new List<KeyValuePair<double, double>>();
+            Style style2 = new Style(typeof(LineDataPoint));
+            style2.Setters.Add(new Setter(LineDataPoint.TemplateProperty, null));
+            style2.Setters.Add(new Setter(LineDataPoint.BackgroundProperty, new SolidColorBrush(Colors.Blue)));
+            mySeries2.DataPointStyle = style2;
             for (int i = 0; i < korelacja.y.Count; i++)
             {
-                punkty.Add(new KeyValuePair<double, double>(korelacja.x[i].Real, korelacja.y[i].Real));
+                punkty2.Add(new KeyValuePair<double, double>(korelacja.x[i].Real, korelacja.y[i].Real));
             }
-            mySeries.ItemsSource = punkty;
-            Wynik.Series.Add(mySeries);
+            mySeries2.ItemsSource = punkty2;
+            Wynik.Series.Add(mySeries2);
             int zakres = korelacja.y.Count;
             double max = 0;
-            int index=0;
+            int index = 0;
             for (int s = zakres / 2; s < zakres; s++)
             {
                 if (korelacja.y[s].Real > max)
@@ -217,7 +239,7 @@ namespace Sygnaly
                 }
             }
             double czas2 = korelacja.x[index].Real - korelacja.x[zakres / 2].Real;
-            int droga = (int)(predkoscOsrodka * czas2 / 2);
+            int droga = (int)(predkoscOsrodka * czas2);
             odlegloscSymulator.Text = droga.ToString();
         }
     }

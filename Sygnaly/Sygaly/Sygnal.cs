@@ -11,7 +11,7 @@ namespace Sygnaly.Sygaly
     public class Sygnal
     {
         // Wartosci Opisujace sygnal
-        public double A = 1;        // <-- Amplituda
+        public double A;        // <-- Amplituda
         public double T;            // <-- Okres
         public double t1;           // <-- Czas Poczatkowy
         public double d;     // <-- Czas Trwania
@@ -30,7 +30,7 @@ namespace Sygnaly.Sygaly
 
         public Sygnal()
         {
-            n = 6;
+            n = 400;
             //x = new List<Complex>();
             //y = new List<Complex>();
 
